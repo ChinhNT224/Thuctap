@@ -1,17 +1,19 @@
 package com.bridgelabz.hospital.repository;
 
 import com.bridgelabz.hospital.entity.Order;
-import com.bridgelabz.hospital.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.time.LocalDate;
+
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
+    // Count orders based on the ngayTao field
+    @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tiep_nhan = :date")
+    int countOrdersByNgayTao(@Param("date") LocalDate date);
 
-    // Phương thức save() của JpaRepository để thêm mới bản ghi
-    // Đối tượng order được truyền vào sẽ được thêm vào cơ sở dữ liệu
-    Order save(Order order);
-    List<Order> findByUserCreatedBy(Users userCreatedBy);
+    // Implement similar methods to count orders by month and year.
 }
 

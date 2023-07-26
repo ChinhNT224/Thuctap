@@ -21,7 +21,6 @@ public class Users  {
 		private String password;
 		private Long mobileNumber;
 		private LocalDateTime createdDate;
-		private Long health_insurance;
 		private boolean isVerified;
 		private String role;
 		private Integer active;
@@ -50,13 +49,12 @@ public class Users  {
 					+ ", role=" + role + "]";
 		}
 
-	public Users(long userId, String name, String email, String password, Long mobileNumber,Long health_insurance, LocalDateTime createdDate, boolean isVerified, String role, Integer active) {
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role, Integer active) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
-		this.health_insurance = health_insurance;
 		this.createdDate = createdDate;
 		this.isVerified = isVerified;
 		this.role = role;
@@ -64,13 +62,12 @@ public class Users  {
 
 	}
 
-	public Users(long userId, String name, String email, String password, Long mobileNumber, Long health_insurance, LocalDateTime createdDate, boolean isVerified, String role, Integer active, Integer isdelete) {
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role, Integer active, Integer isdelete) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
-		this.health_insurance = health_insurance;
 		this.createdDate = createdDate;
 		this.isVerified = isVerified;
 		this.role = role;
@@ -81,13 +78,12 @@ public class Users  {
 	public Users() {
 	}
 
-	public Users(long userId, String name, String email, String password, Long mobileNumber, Long health_insurance, LocalDateTime createdDate, boolean isVerified, String role) {
+	public Users(long userId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, String role) {
 		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.mobileNumber = mobileNumber;
-		this.health_insurance = health_insurance;
 		this.createdDate = createdDate;
 		this.isVerified = isVerified;
 		this.role = role;
@@ -141,16 +137,6 @@ public class Users  {
 		public void setMobileNumber(Long mobileNumber) {
 			this.mobileNumber = mobileNumber;
 		}
-
-		public Long getHealth_insurance() {
-		return health_insurance;
-	}
-
-
-		public void setHealth_insurance(Long health_insurance) {
-		this.health_insurance = health_insurance;
-	}
-
 
 		public LocalDateTime getCreatedDate() {
 			return createdDate;

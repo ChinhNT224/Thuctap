@@ -1,12 +1,13 @@
-package com.bridgelabz.hospital.service;
+package com.bridgelabz.hospital.implementation;
 
 import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.repository.OrderRepository;
+import com.bridgelabz.hospital.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl extends OrderService {
+public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 
@@ -16,12 +17,7 @@ public class OrderServiceImpl extends OrderService {
     }
 
     @Override
-    public Order createOrder(Order order) {
-        // Perform any necessary validations or business logic before saving
-        // For example, you can set the userCreatedBy to the currently authenticated user
-        // and set other default values if needed.
-
-        // Save the order
+    public Order saveOrder(Order order) {
         return orderRepository.save(order);
     }
 }

@@ -61,11 +61,13 @@ public class OrderController {
         Order order = orderRepository.findById(orderId).orElse(null);
         if (order != null) {
             // Cập nhật thông tin của order từ updatedOrder
-            order.setNgay_dang_ky(updatedOrder.getNgay_dang_ky());
             order.setTrang_thai(updatedOrder.getTrang_thai());
-            order.setHo_ten_nguoi_benh(updatedOrder.getHo_ten_nguoi_benh());
-            // Các thuộc tính khác tương tự
-            // ...
+
+            // Lấy thông tin userConfirmedBy dựa vào user_id_confirmed_by
+            Long userConfirmedById = updatedOrder.getUserConfirmedBy().getUserId();
+            Users userConfirmedBy = userRepository.findUserById(userConfirmedById)
+                    .orElseThrow(() -> new EntityNotFoundException("UserConfirmedBy not found!"));
+            order.setUserConfirmedBy(userConfirmedBy);
 
             Order updated = orderRepository.save(order);
             return ResponseEntity.status(HttpStatus.OK).body(updated);
@@ -73,6 +75,7 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
 
     // Xóa một bản ghi Order dựa trên order_id
     @DeleteMapping("/orders/{orderId}")

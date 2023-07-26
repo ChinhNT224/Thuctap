@@ -90,9 +90,7 @@ public class EmailProviderService{
 
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(emailContact));
 			
-			
-			
-			
+
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 			helper.setTo(emailContact);
 			helper.setSubject(emailSubject);

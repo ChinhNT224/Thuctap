@@ -3,6 +3,7 @@ package com.bridgelabz.hospital.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -13,13 +14,12 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id_created_by")
-    private Users userCreatedBy;
+    private Customer userCreatedBy; // Đã thay đổi kiểu dữ liệu từ Users thành Customer
 
     @ManyToOne
     @JoinColumn(name = "user_id_confirmed_by")
     private Users userConfirmedBy;
 
-    private Date ngay_dang_ky;
     private String trang_thai;
     private String ho_ten_nguoi_benh;
     private String gioi_tinh;
@@ -27,7 +27,6 @@ public class Order {
     private String dien_thoai;
     private String email;
     private String dia_chi;
-    private String xac_nhan;
     private Date ngay_hen;
     private Time gio_hen;
     private Date ngay_tao;
@@ -37,14 +36,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(int order_id, Users userCreatedBy, Users userConfirmedBy, Date ngay_dang_ky,
+    public Order(int order_id, Customer userCreatedBy, Users userConfirmedBy,
                  String trang_thai, String ho_ten_nguoi_benh, String gioi_tinh, Date ngay_sinh, String dien_thoai,
-                 String email, String dia_chi, String xac_nhan, Date ngay_hen, Time gio_hen, Date ngay_tao,
+                 String email, String dia_chi, Date ngay_hen, Time gio_hen, Date ngay_tao,
                  Date ngay_tiep_nhan) {
         this.order_id = order_id;
         this.userCreatedBy = userCreatedBy;
         this.userConfirmedBy = userConfirmedBy;
-        this.ngay_dang_ky = ngay_dang_ky;
         this.trang_thai = trang_thai;
         this.ho_ten_nguoi_benh = ho_ten_nguoi_benh;
         this.gioi_tinh = gioi_tinh;
@@ -52,7 +50,6 @@ public class Order {
         this.dien_thoai = dien_thoai;
         this.email = email;
         this.dia_chi = dia_chi;
-        this.xac_nhan = xac_nhan;
         this.ngay_hen = ngay_hen;
         this.gio_hen = gio_hen;
         this.ngay_tao = ngay_tao;
@@ -60,6 +57,7 @@ public class Order {
     }
 
     // Getters and setters
+    // Đã sửa lại getter và setter cho userCreatedBy
     public int getOrder_id() {
         return order_id;
     }
@@ -68,11 +66,11 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public Users getUserCreatedBy() {
+    public Customer getUserCreatedBy() {
         return userCreatedBy;
     }
 
-    public void setUserCreatedBy(Users userCreatedBy) {
+    public void setUserCreatedBy(Customer userCreatedBy) {
         this.userCreatedBy = userCreatedBy;
     }
 
@@ -82,14 +80,6 @@ public class Order {
 
     public void setUserConfirmedBy(Users userConfirmedBy) {
         this.userConfirmedBy = userConfirmedBy;
-    }
-
-    public Date getNgay_dang_ky() {
-        return ngay_dang_ky;
-    }
-
-    public void setNgay_dang_ky(Date ngay_dang_ky) {
-        this.ngay_dang_ky = ngay_dang_ky;
     }
 
     public String getTrang_thai() {
@@ -148,14 +138,6 @@ public class Order {
         this.dia_chi = dia_chi;
     }
 
-    public String getXac_nhan() {
-        return xac_nhan;
-    }
-
-    public void setXac_nhan(String xac_nhan) {
-        this.xac_nhan = xac_nhan;
-    }
-
     public Date getNgay_hen() {
         return ngay_hen;
     }
@@ -187,4 +169,16 @@ public class Order {
     public void setNgay_tiep_nhan(Date ngay_tiep_nhan) {
         this.ngay_tiep_nhan = ngay_tiep_nhan;
     }
+
+    @OneToMany(mappedBy = "userCreatedBy", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
 }

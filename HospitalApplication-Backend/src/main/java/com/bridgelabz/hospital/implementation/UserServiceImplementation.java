@@ -128,8 +128,6 @@ public class UserServiceImplementation implements UserServices {
 				return userRole.equals("admin");
 			} else if (role.equals("reception")) {
 				return userRole.equals("reception");
-			} else if (role.equals("user")) {
-				return userRole.equals("user");
 			} else if (role.equals("accounting")) {
 				return userRole.equals("accounting");
 			} else {
