@@ -22,6 +22,7 @@ import { AdminUserComponent } from './Component/admin-user/admin-user.component'
 import { HistoryBuyComponent } from './Component/history-buy/history-buy.component';
 import { ThongTinTaiKhoanComponent } from './Component/thong-tin-tai-khoan/thong-tin-tai-khoan.component';
 import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-word/dilalog-change-pass-word.component';
+import {LoginCustomerComponent} from './Component/auth/login-customer/login-customer.component';
 
 const routes: Routes = [
 
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'ratedbooks', component: RatedbooksComponent},
   {path: 'bookreviews', component: BookreviewsComponent},
   {path:'chart' ,component:ChartComponent},
+  {path:'loginCustomer',component:LoginCustomerComponent},
   {path:'user',component:AdminUserComponent},
   {path:'userid/:userId',component:ThongTinTaiKhoanComponent},
   {path:'passWord/:userId',component:DilalogChangePassWordComponent},

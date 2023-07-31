@@ -63,7 +63,8 @@ import { ThongTinTaiKhoanComponent } from './Component/thong-tin-tai-khoan/thong
 import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-word/dilalog-change-pass-word.component';
 import { SliderComponent } from './Component/slider/slider.component';
 import { ToastrModule } from 'ngx-toastr';
-import { PayPalComponent } from './Component/pay-pal/pay-pal.component'
+import { PayPalComponent } from './Component/pay-pal/pay-pal.component';
+import { LoginCustomerComponent } from './Component/auth/login-customer/login-customer.component'
 var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ var CanvasJSChart = CanvasJSAngularChart.CanvasJSChart;
     ThongTinTaiKhoanComponent,
     DilalogChangePassWordComponent,
     SliderComponent,
-    PayPalComponent
+    PayPalComponent,
+    LoginCustomerComponent
 
   ],
   imports: [

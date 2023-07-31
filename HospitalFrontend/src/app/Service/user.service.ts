@@ -20,6 +20,9 @@ export class UserService {
   public signIn(data: any) {
     return this.http.post(`${this.baseUrl}/user/login`, data);
   }
+  public SigInCustemer(data:any){
+    return this.http.post(`${this.baseUrl}/customer/login`, data);
+  }
   verifyUserByToken(token) {
     return this.http.post(`${this.baseUrl}/user/verify/`, token);
   }
@@ -67,6 +70,7 @@ export class UserService {
     );
   }
 
+
   public UpdatepassWord(userId:number,data:any){
     return this.http
     .put(`${environment.BASE_URL}/${environment.UpdatePassword}/${userId}`, data, {headers: new HttpHeaders({token: localStorage.token})});
@@ -75,5 +79,5 @@ export class UserService {
     return this.http
     .put(`${environment.BASE_URL}/${environment.Updateinfor}`, data, {headers: new HttpHeaders({token: localStorage.token})});
    }
-  
+
 }

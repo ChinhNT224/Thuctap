@@ -79,5 +79,5 @@ export const environment = {
   WISHLIST_GET: 'bookstore/v3/wishlist/getwishbooks',
   WISHLIST_COUNT: 'bookstore/v3/wishlist/wishlistcount',
   WISHLIST_REMOVE: 'bookstore/v3/wishlist/removeWishlist/',
-
+  loginCustomer:'customer/login'
 };

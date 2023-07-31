@@ -17,6 +17,7 @@ export class TokenService {
     localStorage.setItem('Name', data.obj.name);
     localStorage.setItem('phone', data.obj.mobileNumber);
     localStorage.setItem('id',data.obj.userId)
+    localStorage.setItem('messge', data.message);
   }
   // getting token from the local storage
  public get() {
