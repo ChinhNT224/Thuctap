@@ -2,8 +2,8 @@ package com.bridgelabz.hospital.implementation;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -119,6 +119,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Order getOrderById(int orderId) {
+        return orderRepository.findById(orderId).orElse(null);
+    }
+
+    @Override
     public List<OrderInforDto> getOrdersByCustomerId(long customerId) {
         List<Order> orders = orderRepository.findByUserCreatedByCustomerId(customerId);
         List<OrderInforDto> orderInfos = new ArrayList<>();
@@ -135,4 +140,17 @@ public class CustomerServiceImpl implements CustomerService {
         return orderInfos;
     }
 
+    @Override
+    public void deleteOrderIfPendingConfirmation(Order order) {
+        if ("Chờ xác nhận".equals(order.getTrang_thai())) {
+            order.setUserCreatedBy(null);
+            orderRepository.delete(order);
+        }
+    }
+
+
 }
+
+
+
+

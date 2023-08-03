@@ -1,6 +1,7 @@
 package com.bridgelabz.hospital.controller;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
+import com.bridgelabz.hospital.dto.OrderDetailDto;
 import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
@@ -114,5 +115,63 @@ public class CustomerController {
                     .body(new Response("Không tìm thấy đơn hàng nào cho customerId", 404));
         }
     }
+
+    @GetMapping("/customer/{customerId}/orders/{orderId}")
+    public ResponseEntity<Response> getOrderDetails(@PathVariable long customerId, @PathVariable int orderId) {
+        try {
+            // Lấy thông tin khách hàng từ cơ sở dữ liệu dựa vào customerId
+            Customer customer = customerService.getCustomerById(customerId);
+            // Kiểm tra xem đơn hàng có tồn tại với orderId được cung cấp và thuộc về khách hàng
+            Order order = customerService.getOrderById(orderId);
+
+            // Lấy customerId từ userCreatedBy để so sánh với customerId được cung cấp
+            long createdByCustomerId = order.getUserCreatedBy().getCustomerId();
+
+            if (customerId == createdByCustomerId) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new Response("Chi tiết đơn hàng", 200, order));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("Đơn hàng không tồn tại", 404));
+            }
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Khách hàng không tồn tại", 404));
+        }
+    }
+
+
+
+
+    @DeleteMapping("/customer/{customerId}/orders/{orderId}")
+    public ResponseEntity<Response> deleteOrder(@PathVariable long customerId, @PathVariable int orderId) {
+        try {
+            // Lấy thông tin khách hàng từ cơ sở dữ liệu dựa vào customerId
+            Customer customer = customerService.getCustomerById(customerId);
+            Order order = customerService.getOrderById(orderId);
+
+            if (order == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("Order not found", 404));
+            }
+
+                // Kiểm tra xem trạng thái của đơn hàng có là "Chờ xác nhận" trước khi cho phép xóa
+            if ("Chờ xác nhận".equals(order.getTrang_thai())) {
+                    // Xóa đơn hàng nếu trạng thái là "Chờ xác nhận"
+                customerService.deleteOrderIfPendingConfirmation(order);
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new Response("Đã xóa đơn hàng thành công", 200));
+            } else {
+                // Không xóa nếu trạng thái là "Đã xác nhận"
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new Response("Không thể xóa đơn hàng có trạng thái 'Đã xác nhận'", 400));
+            }
+
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Khách hàng không tồn tại", 404));
+        }
+    }
+
 
 }

@@ -35,7 +35,7 @@ public class ReceptionController {
             }
 
             // Set the trạng thái of the order to "confirmed"
-            order.setTrang_thai("confirmed");
+            order.setTrang_thai("Đã xác nhận");
 
             // Set the receptionUser as the user who confirmed the order
             order.setUserConfirmedBy(receptionUser);

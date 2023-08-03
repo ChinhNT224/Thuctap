@@ -1,6 +1,7 @@
 package com.bridgelabz.hospital.service;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
+import com.bridgelabz.hospital.dto.OrderDetailDto;
 import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
@@ -24,7 +25,11 @@ public interface CustomerService {
     Customer login(LoginInformation information);
 
     void addOrder(Order order);
+    Order getOrderById(int orderId);
 
-    public List<OrderInforDto> getOrdersByCustomerId(long customerId);
+    void deleteOrderIfPendingConfirmation(Order order);
+
+    List<OrderInforDto> getOrdersByCustomerId(long customerId);
+
 
 }
