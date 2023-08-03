@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PeriodicElement} from "../admin-user/admin-user.component";
+import {DilalogUnlockComponent} from '../dilalog-unlock/dilalog-unlock.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ToastrService} from 'ngx-toastr';
+import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-cus-tomer',
@@ -15,9 +20,8 @@ export class CusTomerComponent implements OnInit {
   displayedColumns: string[] = [
     "position",
     "name",
-    "email",
     "ngaytao",
-    "chucnang",
+    "email",
     "weight",
     "symbol",
     "thaoTac",
@@ -25,7 +29,10 @@ export class CusTomerComponent implements OnInit {
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog,
+    private toastr: ToastrService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -34,7 +41,23 @@ export class CusTomerComponent implements OnInit {
   doSearh() {
 
   }
-
+  doAdd(){
+    const dialogRef = this.dialog.open(OrderDialogComponent, {
+      width: '50%',
+      height: 'auto',
+      // disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.userService.ActiveUser(id).subscribe((message) => {
+        //   if (message.statusCode === 200) {
+        //     this.toastr.success("Thông báo","Cập nhật Trạng thái thành công")
+        //     this.doSearh();
+        //   }
+        // });
+      }
+    });
+  }
   nameEventHander($event: any) {
     this.opened2 = $event;
   }

@@ -52,6 +52,7 @@ import {ToastrModule} from 'ngx-toastr';
 
 import {LoginCustomerComponent} from './Component/auth/login-customer/login-customer.component';
 import { CusTomerComponent } from './Component/cus-tomer/cus-tomer.component'
+import {OrderDialogComponent} from './Component/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { CusTomerComponent } from './Component/cus-tomer/cus-tomer.component'
     ThongTinTaiKhoanComponent,
     DilalogChangePassWordComponent,
     LoginCustomerComponent,
+    OrderDialogComponent,
     CusTomerComponent
 
   ],
