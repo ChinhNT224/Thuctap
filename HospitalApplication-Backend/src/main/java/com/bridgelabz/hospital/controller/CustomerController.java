@@ -1,6 +1,7 @@
 package com.bridgelabz.hospital.controller;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
+import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.entity.Users;
@@ -12,6 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -82,7 +86,10 @@ public class CustomerController {
             // Set the customer as the creator of the order
             order.setUserCreatedBy(customer);
 
-            order.setTrang_thai("pending");
+            order.setTrang_thai("Chờ xác nhận");
+
+            // Set the current system time as the order creation time
+            order.setNgay_tao(LocalDateTime.now());
 
             // Save the order to the database
             customerService.addOrder(order);
@@ -92,6 +99,19 @@ public class CustomerController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new Response("Customer not found", 404));
+        }
+    }
+
+
+    @GetMapping("/customer/{customerId}/orders")
+    public ResponseEntity<Response> getOrdersByCustomerId(@PathVariable long customerId) {
+        List<OrderInforDto> orderInfos = customerService.getOrdersByCustomerId(customerId);
+        if (!orderInfos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new Response("Các đơn hàng được tạo bởi customerId", 200, orderInfos));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Không tìm thấy đơn hàng nào cho customerId", 404));
         }
     }
 

@@ -1,10 +1,13 @@
 package com.bridgelabz.hospital.service;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
-import com.bridgelabz.hospital.dto.OrderDto;
+import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.request.LoginInformation;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
 
@@ -21,5 +24,7 @@ public interface CustomerService {
     Customer login(LoginInformation information);
 
     void addOrder(Order order);
+
+    public List<OrderInforDto> getOrdersByCustomerId(long customerId);
 
 }

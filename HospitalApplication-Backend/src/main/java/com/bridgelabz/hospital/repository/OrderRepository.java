@@ -7,10 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tiep_nhan = :date")
     int countOrdersByNgayTao(@Param("date") LocalDate date);
+
+    List<Order> findByUserCreatedByCustomerId(long customerId);
 }
 

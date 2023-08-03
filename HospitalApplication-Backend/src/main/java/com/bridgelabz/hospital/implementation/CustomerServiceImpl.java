@@ -1,10 +1,14 @@
 package com.bridgelabz.hospital.implementation;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
+import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.exception.UserException;
@@ -112,6 +116,23 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void addOrder(Order order) {
         orderRepository.save(order);
+    }
+
+    @Override
+    public List<OrderInforDto> getOrdersByCustomerId(long customerId) {
+        List<Order> orders = orderRepository.findByUserCreatedByCustomerId(customerId);
+        List<OrderInforDto> orderInfos = new ArrayList<>();
+
+        for (Order order : orders) {
+            OrderInforDto orderInfo = new OrderInforDto();
+            orderInfo.setHo_ten_nguoi_benh(order.getHo_ten_nguoi_benh());
+            orderInfo.setNgay_tao(order.getNgay_tao());
+            orderInfo.setNgay_tiep_nhan(order.getNgay_tiep_nhan());
+            orderInfo.setTrang_thai(order.getTrang_thai());
+            orderInfos.add(orderInfo);
+        }
+
+        return orderInfos;
     }
 
 }
