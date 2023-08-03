@@ -63,8 +63,6 @@ public class CustomerController {
         }
     }
 
-    // Thêm các phương thức khác cho Customer tương tự như UserController
-    // Ví dụ:
 
     @GetMapping("/customer/{customerId}")
     public ResponseEntity<Response> getCustomer(@PathVariable long customerId) {
@@ -103,6 +101,49 @@ public class CustomerController {
         }
     }
 
+    @PutMapping("/customer/{customerId}/orders/{orderId}")
+    public ResponseEntity<Response> updateOrder(@PathVariable long customerId, @PathVariable int orderId, @RequestBody Order updatedOrder) {
+        try {
+            // Get the customer from the database based on customerId
+            Customer customer = customerService.getCustomerById(customerId);
+
+            // Get the existing order from the database based on orderId
+            Order existingOrder = customerService.getOrderById(orderId);
+
+            if (existingOrder == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("Order not found", 404));
+            }
+
+            // Check if the existing order was created by the same customer
+            long createdByCustomerId = existingOrder.getUserCreatedBy().getCustomerId();
+
+            if (customerId == createdByCustomerId) {
+                // Update the order details with the new values
+                existingOrder.setTrang_thai(updatedOrder.getTrang_thai());
+                existingOrder.setHo_ten_nguoi_benh(updatedOrder.getHo_ten_nguoi_benh());
+                existingOrder.setGioi_tinh(updatedOrder.getGioi_tinh());
+                existingOrder.setNgay_sinh(updatedOrder.getNgay_sinh());
+                existingOrder.setDien_thoai(updatedOrder.getDien_thoai());
+                existingOrder.setEmail(updatedOrder.getEmail());
+                existingOrder.setDia_chi(updatedOrder.getDia_chi());
+                existingOrder.setNgay_hen(updatedOrder.getNgay_hen());
+                existingOrder.setGio_hen(updatedOrder.getGio_hen());
+
+                // Save the updated order to the database
+                customerService.addOrder(existingOrder);
+
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new Response("Order updated successfully", 200));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("Order not found for the given customer", 404));
+            }
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Customer not found", 404));
+        }
+    }
 
     @GetMapping("/customer/{customerId}/orders")
     public ResponseEntity<Response> getOrdersByCustomerId(@PathVariable long customerId) {
@@ -140,9 +181,6 @@ public class CustomerController {
         }
     }
 
-
-
-
     @DeleteMapping("/customer/{customerId}/orders/{orderId}")
     public ResponseEntity<Response> deleteOrder(@PathVariable long customerId, @PathVariable int orderId) {
         try {
@@ -173,5 +211,25 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/customer/{customerId}/search")
+    public ResponseEntity<Response> searchPatients(@PathVariable long customerId, @RequestParam String query) {
+        try {
+            // Get the customer from the database based on customerId
+            Customer customer = customerService.getCustomerById(customerId);
 
+            // Search for patients that match the query in the customer's orders
+            List<String> matchingPatientNames = customerService.searchPatients(customer, query);
+
+            if (!matchingPatientNames.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new Response("Matching patient names", 200, matchingPatientNames));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("No matching patient names found", 404));
+            }
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Customer not found", 404));
+        }
+    }
 }

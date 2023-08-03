@@ -148,6 +148,26 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
+    public List<String> searchPatients(Customer customer, String query) {
+        List<String> matchingPatientNames = new ArrayList<>();
+
+        if (customer == null) {
+            // Handle the case where the customer is null
+            return matchingPatientNames;
+        }
+
+        List<Order> customerOrders = customer.getOrders();
+
+        if (customerOrders == null) {
+            // Handle the case where the customer has no orders
+            return matchingPatientNames;
+        }
+
+        // ... (remaining code to search and populate matchingPatientNames)
+
+        return matchingPatientNames;
+    }
 
 }
 

@@ -31,5 +31,5 @@ public interface CustomerService {
 
     List<OrderInforDto> getOrdersByCustomerId(long customerId);
 
-
+    List<String> searchPatients(Customer customer, String query);
 }
