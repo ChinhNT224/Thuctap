@@ -1,15 +1,6 @@
-<div *ngIf="!unverified&&!orders&&!review">
 
-    <app-ratedbooks></app-ratedbooks>
-</div>
 
-<div *ngIf="unverified&&!orders&&!review">
-    <app-adminunverifiedbooks></app-adminunverifiedbooks>
-</div>
 
-<div *ngIf="!unverified&&orders&&!review">
-    <app-orderstatus></app-orderstatus>
-</div>
 
 <div *ngIf="!unverified&&!orders&&review">
     <p>reviews</p>

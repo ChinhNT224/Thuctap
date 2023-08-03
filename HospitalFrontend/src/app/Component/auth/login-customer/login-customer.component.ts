@@ -54,7 +54,7 @@ export class LoginCustomerComponent implements OnInit {
     console.log('user is --->' + data);
     this.toastr.success('Sucessfully Login');
       localStorage.setItem('role', 'user');
-      this.route.navigateByUrl('books');
+      this.route.navigateByUrl('Customer');
   }
 
 

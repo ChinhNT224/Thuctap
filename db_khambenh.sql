@@ -24,6 +24,3 @@ INSERT INTO `orders` (`order_id`, `user_id_created_by`, `user_id_confirmed_by`, 
 (9, 1, NULL, 'pending', 'Chinh', 'female', '1990-01-01', '123456789', 'alice@example.com', '123 Main Street', '2023-07-25', '07:00:00', NULL, NULL),
 (10, 1, NULL, 'pending', 'Chinh', 'female', '1990-01-01', '123456789', 'alice@example.com', '123 Main Street', '2023-07-25', '07:00:00', NULL, NULL),
 (11, 1, NULL, 'pending', 'Chinh', 'female', '1990-01-01', '123456789', 'alice123@example.com', '123 Main Street', '2023-07-25', '07:00:00', NULL, NULL);
-
-
-

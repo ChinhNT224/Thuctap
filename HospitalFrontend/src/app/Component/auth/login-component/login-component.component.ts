@@ -59,16 +59,16 @@ export class LoginComponentComponent implements OnInit {
     this.toastr.success('Sucessfully Login');
     if (this.form.role === 'admin') {
       localStorage.setItem('role', 'admin');
-      this.route.navigateByUrl('chart');
+      this.route.navigateByUrl('user');
       return;
     }
-    if (this.form.role === 'seller') {
-      localStorage.setItem('role', 'seller');
+    if (this.form.role === 'reception') {
+      localStorage.setItem('role', 'reception');
       this.route.navigateByUrl('books');
       return;
     }
-    if (this.form.role === 'user') {
-      localStorage.setItem('role', 'user');
+    if (this.form.role === 'accounting') {
+      localStorage.setItem('role', 'accounting');
       this.route.navigateByUrl('books');
       return;
     }

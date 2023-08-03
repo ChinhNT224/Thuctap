@@ -5,14 +5,8 @@
     <div style="background-image: url(../../../../assets/thiet-ke-web-ban-hang-banner.jpg);background-size: cover;height: 100vh;width: 100vw;"></div>
     <mat-card fxFlex="28" *ngIf="!isLoading">
         <div style="text-align: center;">
-            <div fxLayout="row wrap" fxLayoutGap="10px" fxLayoutAlign="flex-start" style="background-color: #304CA0; padding-top: 16px; ">
-                <div class="imgLogo">
-                    <img src="assets\education.svg" alt="">
-                </div>
-                <h2 class="title" >Bookstore</h2>
-            </div>
             <h2>Sign in</h2>
-            <p>Use your Bookstore Account</p>
+            <p>Nhân viên hệ thống</p>
         </div>
         <div class="alert alert-danger text-justify" [hidden]="!error">{{error}}</div>
         <form action="" fxLayout="column" fxLayoutAlign="start start" #loginForm=ngForm (ngSubmit)="onSubmit()" *ngIf="!isLoading">
@@ -36,8 +30,8 @@
             <div class="text-left">
                 <h4>Login As</h4>
                 <mat-radio-group aria-label="Select an option" [(ngModel)]="form.role" name="role">
-                    <mat-radio-button id="userRadioBtn" value="user" required="required"> User </mat-radio-button> &nbsp;
-                    <mat-radio-button id="sellerRadioBtn" value="seller" required="required">Seller </mat-radio-button> &nbsp;
+                    <mat-radio-button id="userRadioBtn" value="accounting" required="required"> Accounting </mat-radio-button> &nbsp;
+                    <mat-radio-button id="sellerRadioBtn" value="reception" required="required"> Reception </mat-radio-button> &nbsp;
                     <mat-radio-button id="adminRadioBtn" value="admin" required="required"> Admin </mat-radio-button>
                 </mat-radio-group>
             </div>
