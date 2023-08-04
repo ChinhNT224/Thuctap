@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../Service/user.service';
 
 @Component({
   selector: 'app-cus-tomer',
@@ -28,18 +29,23 @@ export class CusTomerComponent implements OnInit {
   ];
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
-
+  id:string
   constructor(
     private dialog: MatDialog,
     private toastr: ToastrService,
+    private user: UserService,
   ) {
   }
 
   ngOnInit(): void {
+    this.id= localStorage.getItem('id');
+    this.doSearh();
   }
 
   doSearh() {
-
+     this.user.getDanhSachOrder(this.id).subscribe(res=>{
+       this.dataSource=res.obj
+     })
   }
   doAdd(){
     const dialogRef = this.dialog.open(OrderDialogComponent, {

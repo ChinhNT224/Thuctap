@@ -16,15 +16,18 @@ public interface CustomerService {
 
     boolean isValidCredentials(String email, String password);
 
+    Customer findByEmail(String email);
+
     String generateToken(String email);
 
     boolean verifyCustomer(String token);
 
     Customer getCustomerById(long customerId);
 
-    Customer login(LoginInformation information);
+    Customer login(CustomerDto information);
 
     void addOrder(Order order);
+
     Order getOrderById(int orderId);
 
     void deleteOrderIfPendingConfirmation(Order order);

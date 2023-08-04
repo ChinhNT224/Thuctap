@@ -27,7 +27,7 @@ export const environment = {
   sorting: 'books/sorting',
   SortNewestArrival: 'books/unsorting',
   cusUrl : 'books/pagewise',
-
+  customerOrder:'',
   addbooks: 'books',
   deleteBook: 'books',
   editBook: 'books',
@@ -38,7 +38,7 @@ export const environment = {
   addtocart: 'carts/addcart',
   getbookprice: 'getbookprice',
   getReview: 'books/getratereviews',
-
+  custemerOrder:'customer/',
   quantity: 'http://localhost:8080/',
   addbooksquantity: 'addbooksquantity',
   USER_REGISTRATION: 'registration',

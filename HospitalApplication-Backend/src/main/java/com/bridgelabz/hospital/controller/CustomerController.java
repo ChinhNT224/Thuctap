@@ -42,9 +42,10 @@ public class CustomerController {
         boolean isValidCredentials = customerService.isValidCredentials(loginInformation.getEmail(), loginInformation.getPassword());
         if (isValidCredentials) {
             String token = customerService.generateToken(loginInformation.getEmail());
+            Customer customer=customerService.findByEmail(loginInformation.getEmail());
             return ResponseEntity.status(HttpStatus.ACCEPTED)
                     .header("Authorization", "Bearer " , "Login successful")
-                    .body(new Response(token, 200));
+                    .body(new Response(token, 200,customer));
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(new Response("Invalid credentials", 401));

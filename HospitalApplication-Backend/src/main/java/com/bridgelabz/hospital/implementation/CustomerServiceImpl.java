@@ -79,6 +79,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Customer findByEmail(String email) {
+        return customerRepository.findByEmail(email);
+    }
+
+    @Override
     public String generateToken(String email) {
         Customer customer = customerRepository.findByEmail(email);
         if (customer != null) {
@@ -109,7 +114,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer login(LoginInformation information) {
+    public Customer login(CustomerDto information) {
         return null;
     }
 

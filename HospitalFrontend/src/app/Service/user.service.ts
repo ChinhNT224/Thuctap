@@ -34,6 +34,9 @@ export class UserService {
       updatePassword,
     );
   }
+  public getDanhSachOrder(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${environment.custemerOrder}${id}/orders`);
+  }
   public getAdress(): Observable<any> {
     return this.http.get(`${this.baseUrl}/${environment.GET_ADDRESS_BY_ADDRES}`, {headers: new HttpHeaders({token: localStorage.token})});
   }

@@ -4,6 +4,7 @@ import {TokenService} from '../../../Service/token.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {Title} from '@angular/platform-browser';
+import {TokenCustomerServiceService} from '../../../Service/token-customer-service.service';
 
 @Component({
   selector: 'app-login-customer',
@@ -22,7 +23,7 @@ export class LoginCustomerComponent implements OnInit {
   };
 
   constructor(private user: UserService,
-              private token: TokenService,
+              private token: TokenCustomerServiceService,
               private route: Router,
               private toastr: ToastrService,
               private titleService: Title
@@ -49,11 +50,15 @@ export class LoginCustomerComponent implements OnInit {
   }
 
   handleResponse(data) {
+    this.token.handle(data);
     console.log(data);
     this.isLoading = false;
+    this.token.logedIn(true);
+    console.log('user is --->' + data);
     console.log('user is --->' + data);
     this.toastr.success('Sucessfully Login');
       localStorage.setItem('role', 'user');
+    console.log("ád",localStorage.getItem('idCustomer'))
       this.route.navigateByUrl('Customer');
   }
 
