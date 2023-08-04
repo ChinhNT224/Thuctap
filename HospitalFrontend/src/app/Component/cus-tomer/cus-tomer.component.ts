@@ -56,13 +56,9 @@ export class CusTomerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // this.userService.ActiveUser(id).subscribe((message) => {
-        //   if (message.statusCode === 200) {
-        //     this.toastr.success("Thông báo","Cập nhật Trạng thái thành công")
-        //     this.doSearh();
-        //   }
-        // });
-      }
+            this.toastr.success("Thông báo","Thêm mới thành công")
+            this.doSearh();
+          }
     });
   }
   doEit(){

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -89,7 +90,6 @@ public class CustomerController {
             order.setTrang_thai("Chờ xác nhận");
 
             // Set the current system time as the order creation time
-            order.setNgay_tao(LocalDateTime.now());
 
             // Save the order to the database
             customerService.addOrder(order);
@@ -120,7 +120,6 @@ public class CustomerController {
             long createdByCustomerId = existingOrder.getUserCreatedBy().getCustomerId();
 
             if (customerId == createdByCustomerId) {
-                // Update the order details with the new values
                 existingOrder.setTrang_thai(updatedOrder.getTrang_thai());
                 existingOrder.setHo_ten_nguoi_benh(updatedOrder.getHo_ten_nguoi_benh());
                 existingOrder.setGioi_tinh(updatedOrder.getGioi_tinh());
@@ -131,7 +130,6 @@ public class CustomerController {
                 existingOrder.setNgay_hen(updatedOrder.getNgay_hen());
                 existingOrder.setGio_hen(updatedOrder.getGio_hen());
 
-                // Save the updated order to the database
                 customerService.addOrder(existingOrder);
 
                 return ResponseEntity.status(HttpStatus.OK)

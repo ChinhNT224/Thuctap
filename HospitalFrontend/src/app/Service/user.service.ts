@@ -17,6 +17,10 @@ export class UserService {
  public signUp(data: any) {
     return this.http.post(`${this.baseUrl}/registration`, data);
   }
+ public AddOrder(data:any,id:string) {
+   return this.http.post(`${this.baseUrl}/${environment.addOrder}${id}/orders`, data);
+ }
+
   public signIn(data: any) {
     return this.http.post(`${this.baseUrl}/user/login`, data);
   }

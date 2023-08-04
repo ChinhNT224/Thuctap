@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 
 public class OrderInforDto {
     private String ho_ten_nguoi_benh;
-    private LocalDateTime ngay_tao;
-    private LocalDateTime ngay_tiep_nhan;
+    private Date ngay_tao;
+    private Date ngay_tiep_nhan;
     private String trang_thai;
 
-    public OrderInforDto(String ho_ten_nguoi_benh, LocalDateTime ngay_tao, LocalDateTime ngay_tiep_nhan, String trang_thai) {
+    public OrderInforDto(String ho_ten_nguoi_benh, Date ngay_tao, Date ngay_tiep_nhan, String trang_thai) {
         this.ho_ten_nguoi_benh = ho_ten_nguoi_benh;
         this.ngay_tao = ngay_tao;
         this.ngay_tiep_nhan = ngay_tiep_nhan;
@@ -28,19 +28,19 @@ public class OrderInforDto {
         this.ho_ten_nguoi_benh = ho_ten_nguoi_benh;
     }
 
-    public LocalDateTime getNgay_tao() {
+    public Date getNgay_tao() {
         return ngay_tao;
     }
 
-    public void setNgay_tao(LocalDateTime ngay_tao) {
+    public void setNgay_tao(Date ngay_tao) {
         this.ngay_tao = ngay_tao;
     }
 
-    public LocalDateTime getNgay_tiep_nhan() {
+    public Date getNgay_tiep_nhan() {
         return ngay_tiep_nhan;
     }
 
-    public void setNgay_tiep_nhan(LocalDateTime ngay_tiep_nhan) {
+    public void setNgay_tiep_nhan(Date ngay_tiep_nhan) {
         this.ngay_tiep_nhan = ngay_tiep_nhan;
     }
 

@@ -30,8 +30,8 @@ public class Order {
     private String dia_chi;
     private Date ngay_hen;
     private Time gio_hen;
-    private LocalDateTime ngay_tao;
-    private LocalDateTime ngay_tiep_nhan;
+    private Date ngay_tao;
+    private Date ngay_tiep_nhan;
 
     // Constructors
     public Order() {
@@ -39,8 +39,8 @@ public class Order {
 
     public Order(int order_id, Customer userCreatedBy, Users userConfirmedBy,
                  String trang_thai, String ho_ten_nguoi_benh, String gioi_tinh, Date ngay_sinh, String dien_thoai,
-                 String email, String dia_chi, Date ngay_hen, Time gio_hen, LocalDateTime ngay_tao,
-                 LocalDateTime ngay_tiep_nhan) {
+                 String email, String dia_chi, Date ngay_hen, Time gio_hen, Date ngay_tao,
+                 Date ngay_tiep_nhan) {
         this.order_id = order_id;
         this.userCreatedBy = userCreatedBy;
         this.userConfirmedBy = userConfirmedBy;
@@ -155,19 +155,19 @@ public class Order {
         this.gio_hen = gio_hen;
     }
 
-    public LocalDateTime  getNgay_tao() {
+    public Date  getNgay_tao() {
         return ngay_tao;
     }
 
-    public void setNgay_tao(LocalDateTime  ngay_tao) {
+    public void setNgay_tao(Date  ngay_tao) {
         this.ngay_tao = ngay_tao;
     }
 
-    public LocalDateTime getNgay_tiep_nhan() {
+    public Date getNgay_tiep_nhan() {
         return ngay_tiep_nhan;
     }
 
-    public void setNgay_tiep_nhan(LocalDateTime ngay_tiep_nhan) {
+    public void setNgay_tiep_nhan(Date ngay_tiep_nhan) {
         this.ngay_tiep_nhan = ngay_tiep_nhan;
     }
 
