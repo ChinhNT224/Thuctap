@@ -36,6 +36,7 @@ export const environment = {
   CartUrl: 'http://localhost:8080/',
   addUrl: 'customers/addcustomer',
   addOrder:'customer/',
+  updateOrder:'customer/',
   addtocart: 'carts/addcart',
   getbookprice: 'getbookprice',
   getReview: 'books/getratereviews',

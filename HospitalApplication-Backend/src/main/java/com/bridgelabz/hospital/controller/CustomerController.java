@@ -89,8 +89,7 @@ public class CustomerController {
 
             // Set the customer as the creator of the order
             order.setUserCreatedBy(customer);
-
-            order.setTrang_thai("Chờ xác nhận");
+            
 
             // Set the current system time as the order creation time
 

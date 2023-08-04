@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {PeriodicElement} from "../admin-user/admin-user.component";
+import {MatTableDataSource} from '@angular/material/table';
+import {PeriodicElement} from '../admin-user/admin-user.component';
 import {DilalogUnlockComponent} from '../dilalog-unlock/dilalog-unlock.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
@@ -20,17 +20,18 @@ export class CusTomerComponent implements OnInit {
   public opened2 = false;
   totalItems: number = 0;
   displayedColumns: string[] = [
-    "position",
-    "name",
-    "ngaytao",
-    "email",
-    "symbol",
-    "thaoTac",
+    'position',
+    'name',
+    'ngaytao',
+    'email',
+    'symbol',
+    'thaoTac',
   ];
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
-  id:string;
-  id_order:string;
+  id: string;
+  id_order: string;
+
   constructor(
     private dialog: MatDialog,
     private toastr: ToastrService,
@@ -39,30 +40,32 @@ export class CusTomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id= localStorage.getItem('id');
+    this.id = localStorage.getItem('id');
     this.doSearh();
   }
 
   doSearh() {
-     this.user.getDanhSachOrder(this.id).subscribe(res=>{
-       this.dataSource=res.obj
-       this.totalItems=this.dataSource.length
-       this.paginateData();
-     })
+    this.user.getDanhSachOrder(this.id).subscribe(res => {
+      this.dataSource = res.obj
+      this.totalItems = this.dataSource.length
+      this.paginateData();
+    })
   }
-  doAdd(){
+
+  doAdd() {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       width: '50%',
       height: 'auto',
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-            this.toastr.success("Thêm mới thành công","thông báo")
-            this.doSearh();
-          }
+        this.toastr.success('Thêm mới thành công', 'thông báo')
+        this.doSearh();
+      }
     });
   }
-  doEit(item :any){
+
+  doEit(item: any) {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       width: '50%',
       height: 'auto',
@@ -70,39 +73,39 @@ export class CusTomerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // this.userService.ActiveUser(id).subscribe((message) => {
-        //   if (message.statusCode === 200) {
-        //     this.toastr.success("Thông báo","Cập nhật Trạng thái thành công")
-        //     this.doSearh();
-        //   }
-        // });
+        this.toastr.success('Thông báo', 'Cập nhật Lịch khám thành công')
+        this.doSearh();
       }
     });
   }
-  doDelete(item :any){
+
+  doDelete(item: any) {
     console.log()
     const dialogRef = this.dialog.open(DialalogDeleteComponent, {
-      width: "auto",
-      height: "auto",
+      width: 'auto',
+      height: 'auto',
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
-        this.user.Delete(this.id,item.order_id).subscribe(res  =>{
-          if (res){
-            this.toastr.success('Xóa thành công','Thông báo')
-          }
-          this.doSearh();
-        })
+      this.user.Delete(this.id, item.order_id).subscribe(res => {
+        if (res) {
+          this.toastr.success('Xóa thành công', 'Thông báo')
+        }
+        this.doSearh();
+      })
     });
   }
+
   nameEventHander($event: any) {
     this.opened2 = $event;
   }
+
   paginateData() {
     const start = this.page * this.pageSize;
     const end = start + this.pageSize;
     this.dataSource = this.dataSource.slice(start, end);
   }
+
   onChangePage(event: any) {
     this.pageSize = event.pageSize;
     this.page = event.pageIndex;
