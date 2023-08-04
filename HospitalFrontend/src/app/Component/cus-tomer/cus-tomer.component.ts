@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../Service/user.service';
+import {DialalogDeleteComponent} from '../dialalog-delete/dialalog-delete.component';
 
 @Component({
   selector: 'app-cus-tomer',
@@ -23,7 +24,6 @@ export class CusTomerComponent implements OnInit {
     "name",
     "ngaytao",
     "email",
-    "weight",
     "symbol",
     "thaoTac",
   ];
@@ -45,9 +45,27 @@ export class CusTomerComponent implements OnInit {
   doSearh() {
      this.user.getDanhSachOrder(this.id).subscribe(res=>{
        this.dataSource=res.obj
+       this.totalItems=this.dataSource.length
+       this.paginateData();
      })
   }
   doAdd(){
+    const dialogRef = this.dialog.open(OrderDialogComponent, {
+      width: '50%',
+      height: 'auto',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.userService.ActiveUser(id).subscribe((message) => {
+        //   if (message.statusCode === 200) {
+        //     this.toastr.success("Thông báo","Cập nhật Trạng thái thành công")
+        //     this.doSearh();
+        //   }
+        // });
+      }
+    });
+  }
+  doEit(){
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       width: '50%',
       height: 'auto',
@@ -64,10 +82,24 @@ export class CusTomerComponent implements OnInit {
       }
     });
   }
+  doDelete(){
+    const dialogRef = this.dialog.open(DialalogDeleteComponent, {
+      width: "auto",
+      height: "auto",
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
+  }
   nameEventHander($event: any) {
     this.opened2 = $event;
   }
-
+  paginateData() {
+    const start = this.page * this.pageSize;
+    const end = start + this.pageSize;
+    this.dataSource = this.dataSource.slice(start, end);
+  }
   onChangePage(event: any) {
     this.pageSize = event.pageSize;
     this.page = event.pageIndex;
