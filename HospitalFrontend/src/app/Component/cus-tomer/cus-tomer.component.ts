@@ -56,16 +56,16 @@ export class CusTomerComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-            this.toastr.success("Thông báo","Thêm mới thành công")
+            this.toastr.success("Thêm mới thành công","thông báo")
             this.doSearh();
           }
     });
   }
-  doEit(){
+  doEit(item :any){
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       width: '50%',
       height: 'auto',
-      // disableClose: true,
+      data: item.order_id,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
