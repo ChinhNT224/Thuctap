@@ -8,6 +8,8 @@ import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.entity.Users;
 import com.bridgelabz.hospital.response.Response;
 import com.bridgelabz.hospital.service.CustomerService;
+import com.bridgelabz.hospital.service.OrderService;
+import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,8 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-
+     @Autowired
+     private OrderService orderService;
     @PostMapping("/customer/registration")
     public ResponseEntity<Response> registration(@RequestBody CustomerDto information) {
         boolean result = customerService.register(information);
@@ -208,6 +211,13 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new Response("Khách hàng không tồn tại", 404));
         }
+    }
+
+    @GetMapping("/DetailOrder/{order_id}")
+    public ResponseEntity<Response>FindById(@PathVariable int order_id ){
+        Optional<Order> order = orderService.FindById(order_id);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new Response("Chi tiết đơn hàng", 200, order));
     }
 
     @GetMapping("/customer/{customerId}/search")

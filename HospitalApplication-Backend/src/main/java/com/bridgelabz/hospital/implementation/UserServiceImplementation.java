@@ -26,6 +26,7 @@ import com.bridgelabz.hospital.service.UserServices;
 import com.bridgelabz.hospital.util.EmailProviderService;
 import com.bridgelabz.hospital.util.JwtGenerator;
 import com.bridgelabz.hospital.util.MailServiceProvider;
+import org.springframework.web.bind.annotation.GetMapping;
 
 //import com.bridgelabz.hospital.util.RabbitMQSender;
 
@@ -153,6 +154,8 @@ public class UserServiceImplementation implements UserServices {
 			return user;
 		}
 	}
+
+
 
 	/**
 	 * Verifying the user based on there token

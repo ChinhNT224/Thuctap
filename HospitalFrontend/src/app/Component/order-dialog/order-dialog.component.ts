@@ -43,8 +43,23 @@ export class OrderDialogComponent implements OnInit {
     this.id = localStorage.getItem('id')
     this.id_custemer=this.data
     console.log(this.id_custemer)
+    this.doDetail(this.id_custemer)
   }
-
+ doDetail(id:string){
+    this.user.Detail(id).subscribe((response:any)=>{
+       if(response){
+         this.formDkKham.controls['HO_TEN'].setValue(response.obj.ho_ten_nguoi_benh)
+         this.formDkKham.controls['GIOI_TINH'].setValue(response.obj.gioi_tinh)
+         this.formDkKham.controls['NGAY_SINH'].setValue(response.obj.ngay_sinh)
+         this.formDkKham.controls['Email'].setValue(response.obj.email)
+         this.formDkKham.controls['SDT'].setValue(response.obj.dien_thoai)
+         this.formDkKham.controls['NGAY_HEN'].setValue(response.obj.ngay_hen)
+         this.formDkKham.controls['NGAY_TAO'].setValue(response.obj.ngay_tao)
+         this.formDkKham.controls['NGAY_TN'].setValue(response.obj.ngay_tiep_nhan)
+         this.formDkKham.controls['GIO_HEN'].setValue(response.obj.gio_hen)
+       }
+    })
+ }
   doSave() {
 
     if (this.formDkKham.invalid) {

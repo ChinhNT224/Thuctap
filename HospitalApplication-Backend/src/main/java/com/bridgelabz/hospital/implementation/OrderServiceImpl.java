@@ -6,6 +6,8 @@ import com.bridgelabz.hospital.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -19,5 +21,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order saveOrder(Order order) {
         return orderRepository.save(order);
+    }
+
+    @Override
+    public Optional<Order> FindById(int id) {
+        return orderRepository.findById(id);
     }
 }

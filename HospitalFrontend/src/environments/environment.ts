@@ -12,7 +12,7 @@ export const environment = {
   BASE_URL: 'http://localhost:8080',
   BookUrl: 'http://localhost:8080',
   getallbooksurl: 'books/',
-
+  DetailOrder:'DetailOrder/',
   DeleteOrder:'customer/',
   // BASE_URL: 'http://localhost:8080',
   // BookUrl: 'http://localhost:8080',

@@ -20,6 +20,9 @@ export class UserService {
  public AddOrder(data:any,id:string) {
    return this.http.post(`${this.baseUrl}/${environment.addOrder}${id}/orders`, data);
  }
+ public Detail(id :string){
+   return this.http.get(`${this.baseUrl}/${environment.DetailOrder}${id}`)
+ }
   public Delete(idcustem:any,id:string) {
     return this.http.delete(`${this.baseUrl}/${environment.DeleteOrder}${idcustem}/orders/${id}`);
   }
