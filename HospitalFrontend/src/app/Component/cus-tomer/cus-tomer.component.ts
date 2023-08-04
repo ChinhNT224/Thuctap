@@ -29,7 +29,8 @@ export class CusTomerComponent implements OnInit {
   ];
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
-  id:string
+  id:string;
+  id_order:string;
   constructor(
     private dialog: MatDialog,
     private toastr: ToastrService,
@@ -78,14 +79,20 @@ export class CusTomerComponent implements OnInit {
       }
     });
   }
-  doDelete(){
+  doDelete(item :any){
+    console.log()
     const dialogRef = this.dialog.open(DialalogDeleteComponent, {
       width: "auto",
       height: "auto",
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
-
+        this.user.Delete(this.id,item.order_id).subscribe(res  =>{
+          if (res){
+            this.toastr.success('Xóa thành công','Thông báo')
+          }
+          this.doSearh();
+        })
     });
   }
   nameEventHander($event: any) {

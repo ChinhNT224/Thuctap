@@ -139,6 +139,7 @@ public class CustomerServiceImpl implements CustomerService {
             orderInfo.setNgay_tao(order.getNgay_tao());
             orderInfo.setNgay_tiep_nhan(order.getNgay_tiep_nhan());
             orderInfo.setTrang_thai(order.getTrang_thai());
+            orderInfo.setOrder_id(order.getOrder_id());
             orderInfos.add(orderInfo);
         }
 
