@@ -17,7 +17,7 @@ import {CusTomerComponent} from "./Component/cus-tomer/cus-tomer.component";
 const routes: Routes = [
 
   {
-    path: '', redirectTo: 'books',
+    path: '', redirectTo: 'loginCustomer',
     pathMatch: 'full'
   },
   {path: 'update-password/:token', component: ResetPasswordComponent},
