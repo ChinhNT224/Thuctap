@@ -29,9 +29,9 @@ export class OrderDialogComponent implements OnInit {
     Email: [null, [Validators.required]],
     SDT: [null, [Validators.required]],
     NGAY_HEN: [null, [Validators.required]],
-    NGAY_TAO: [Validators.required],
-    NGAY_TN: [Validators.required],
-    GIO_HEN: [Validators.required]
+    NGAY_TAO:[ null,[Validators.required]],
+    NGAY_TN: [ null,[Validators.required]],
+    GIO_HEN: [ null,[Validators.required]]
   });
   gioiTinh: any = [
     {name: 'nam', value: 'NAM'},
