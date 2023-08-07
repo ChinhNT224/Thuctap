@@ -34,5 +34,6 @@ public interface CustomerService {
 
     List<OrderInforDto> getOrdersByCustomerId(long customerId ,String trangThai);
 
+
     List<String> searchPatients(Customer customer, String query);
 }

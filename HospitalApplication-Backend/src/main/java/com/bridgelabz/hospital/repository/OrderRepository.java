@@ -18,5 +18,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT o FROM Order o WHERE o.trang_thai like :trangThai and o.userCreatedBy.customerId = :customerId")
     List<Order> findByUserCreatedByCustomerId(long customerId ,String trangThai);
 
+    @Query("SELECT o FROM Order o WHERE  o.userCreatedBy.customerId = :customerId")
+    List<Order>findAllBycustomerId(long customerId );
 }
 

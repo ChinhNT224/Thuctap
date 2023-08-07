@@ -196,7 +196,7 @@ public class CustomerController {
             }
 
                 // Kiểm tra xem trạng thái của đơn hàng có là "Chờ xác nhận" trước khi cho phép xóa
-            if ("Chờ xác nhận".equals(order.getTrang_thai())) {
+            if ("CHO_XAC_NHAN".equals(order.getTrang_thai())) {
                     // Xóa đơn hàng nếu trạng thái là "Chờ xác nhận"
                 customerService.deleteOrderIfPendingConfirmation(order);
                 return ResponseEntity.status(HttpStatus.OK)
