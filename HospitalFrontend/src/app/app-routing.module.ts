@@ -13,6 +13,8 @@ import { DilalogChangePassWordComponent } from './Component/dilalog-change-pass-
 import {LoginCustomerComponent} from './Component/auth/login-customer/login-customer.component';
 import {Customer} from "./Model/customer.model";
 import {CusTomerComponent} from "./Component/cus-tomer/cus-tomer.component";
+import {ReceptionTableComponent} from "./Component/reception-table/reception-table.component";
+import {AccountingComponent} from "./Component/accounting/accounting.component";
 
 const routes: Routes = [
 
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path:'userid/:userId',component:ThongTinTaiKhoanComponent},
   {path:'passWord/:userId',component:DilalogChangePassWordComponent},
   {path:'Customer',component:CusTomerComponent},
+  {path:'ReceptionTable',component:ReceptionTableComponent},
+  {path:'Accouting',component:AccountingComponent},
   {path: '**', component: PagenotfoundComponent},
 ];
 

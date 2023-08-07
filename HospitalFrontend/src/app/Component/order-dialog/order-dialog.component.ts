@@ -61,7 +61,7 @@ export class OrderDialogComponent implements OnInit {
     })
  }
   doSave(type:number) {
-
+    debugger
     if (this.formDkKham.invalid) {
       this.formDkKham.markAllAsTouched();
       this.toastr.warning(
@@ -82,7 +82,8 @@ export class OrderDialogComponent implements OnInit {
       ngay_tiep_nhan: this.formDkKham.controls['NGAY_TN'].value,
       trang_thai:'CHO_XAC_NHAN'
     }
-    if(type==1){
+    console.log("daa",JSON.stringify(data))
+    if(type = 1){
       this.user.AddOrder(data, this.id).subscribe(res => {
         if (res) {
           this.dialogRef.close(data);

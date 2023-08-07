@@ -64,12 +64,12 @@ export class LoginComponentComponent implements OnInit {
     }
     if (this.form.role === 'reception') {
       localStorage.setItem('role', 'reception');
-      this.route.navigateByUrl('books');
+      this.route.navigateByUrl('ReceptionTable');
       return;
     }
     if (this.form.role === 'accounting') {
       localStorage.setItem('role', 'accounting');
-      this.route.navigateByUrl('books');
+      this.route.navigateByUrl('Accouting');
       return;
     }
 }

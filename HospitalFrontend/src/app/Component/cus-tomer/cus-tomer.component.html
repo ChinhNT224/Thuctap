@@ -59,7 +59,7 @@
         <ng-container matColumnDef="symbol" ,color="accent" ,icon="delete">
           <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 20%;">Trạng thái</th>
           <td mat-cell *matCellDef=" let element " style="text-align: center;">
-            {{element.trang_thai}} </td>
+            {{element.trang_thai=='CHO_XAC_NHAN'?'Chờ xác nhận':element.trang_thai}} </td>
           <!-- <td mat-cell *matCellDef=" let element "> {{viewTrangThai(element)}} </td> -->
         </ng-container>
         <ng-container matColumnDef="thaoTac">

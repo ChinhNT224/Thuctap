@@ -53,6 +53,9 @@ import {ToastrModule} from 'ngx-toastr';
 import {LoginCustomerComponent} from './Component/auth/login-customer/login-customer.component';
 import { CusTomerComponent } from './Component/cus-tomer/cus-tomer.component'
 import {OrderDialogComponent} from './Component/order-dialog/order-dialog.component';
+import { ReceptionTableComponent } from './Component/reception-table/reception-table.component';
+import { DilogUserDangKyComponent } from './Component/dilog-user-dang-ky/dilog-user-dang-ky.component';
+import { AccountingComponent } from './Component/accounting/accounting.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import {OrderDialogComponent} from './Component/order-dialog/order-dialog.compon
     DilalogChangePassWordComponent,
     LoginCustomerComponent,
     OrderDialogComponent,
-    CusTomerComponent
+    CusTomerComponent,
+    ReceptionTableComponent,
+    DilogUserDangKyComponent,
+    AccountingComponent
 
   ],
   imports: [
