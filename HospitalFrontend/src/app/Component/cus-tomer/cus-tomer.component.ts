@@ -30,8 +30,13 @@ export class CusTomerComponent implements OnInit {
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
   id: string;
-  id_order: string;
-
+  trangThai:string='ALL'
+  listTrangThai: any=[
+    {name : 'Tất cả' , value:'ALL'},
+    {name : 'Chờ xác nhận' , value:'CHO_XAC_NHAN'},
+    {name : 'pending' , value:'pending'},
+    {name : 'confirmed ' , value:'confirmed'},
+  ]
   constructor(
     private dialog: MatDialog,
     private toastr: ToastrService,
@@ -45,7 +50,7 @@ export class CusTomerComponent implements OnInit {
   }
 
   doSearh() {
-    this.user.getDanhSachOrder(this.id).subscribe(res => {
+    this.user.getDanhSachOrder(this.id,this.trangThai).subscribe(res => {
       this.dataSource = res.obj
       this.totalItems = this.dataSource.length
       this.paginateData();

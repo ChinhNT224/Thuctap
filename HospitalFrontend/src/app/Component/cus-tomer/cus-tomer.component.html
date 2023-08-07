@@ -15,10 +15,14 @@
       </div>
       <div>
         <div class="col-8">
-          <label>Email:</label>
-          <mat-form-field class="col-6" appearance="outline" fxLayout="column" style="width: 100%;">
-            <input matInput [(ngModel)]="name" placeholder="Email">
-          </mat-form-field>
+          <mat-form-field class="w-full">
+          <mat-label >Trạng thái</mat-label>
+          <mat-select [(ngModel)]= trangThai (selectionChange)="doSearh()">
+            <mat-option *ngFor="let food of listTrangThai" [value]="food.value">
+              {{food.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         </div>
         <div class="col-8" style="width: 100%; margin: 10px 1462px;">
           <button mat-raised-button [color]="'primary'" class="ml-4 button-create evn-bg-blue"
@@ -66,10 +70,10 @@
               style="  text-align: center;">
             <div style="display: flex;">
               <ul matTooltip="sửa " href="javascript:void(0)" (click)="doEit(row)">
-                <i class='fa fa-edit' style="font-size:24px ;color:#000080;" *ngIf="row.trang_thai=='Chờ xác nhận'"></i>
+                <i class='fa fa-edit' style="font-size:24px ;color:#000080;" *ngIf="row.trang_thai=='CHO_XAC_NHAN'"></i>
               </ul>
               <ul matTooltip="Xóa" href="javascript:void(0)" (click)="doDelete(row)">
-                <i class='fa fa-trash' style="font-size:24px ;color:#000080" *ngIf="row.trang_thai=='Chờ xác nhận'"></i>
+                <i class='fa fa-trash' style="font-size:24px ;color:#000080" *ngIf="row.trang_thai=='CHO_XAC_NHAN'"></i>
               </ul>
             </div>
           </td>
