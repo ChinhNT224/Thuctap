@@ -2,6 +2,7 @@ package com.bridgelabz.hospital.controller;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
 import com.bridgelabz.hospital.dto.OrderDetailDto;
+import com.bridgelabz.hospital.dto.OrderDto;
 import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
@@ -146,9 +147,9 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/customer/{customerId}/orders")
-    public ResponseEntity<Response> getOrdersByCustomerId(@PathVariable long customerId) {
-        List<OrderInforDto> orderInfos = customerService.getOrdersByCustomerId(customerId);
+    @GetMapping("/customer/{customerId}/{tinhTrang}")
+    public ResponseEntity<Response> getOrdersByCustomerId(@PathVariable long customerId, @PathVariable String tinhTrang) {
+        List<OrderInforDto> orderInfos = customerService.getOrdersByCustomerId(customerId,tinhTrang);
         if (!orderInfos.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new Response("Các đơn hàng được tạo bởi customerId", 200, orderInfos));

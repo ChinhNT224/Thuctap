@@ -32,7 +32,7 @@ public interface CustomerService {
 
     void deleteOrderIfPendingConfirmation(Order order);
 
-    List<OrderInforDto> getOrdersByCustomerId(long customerId);
+    List<OrderInforDto> getOrdersByCustomerId(long customerId ,String trangThai);
 
     List<String> searchPatients(Customer customer, String query);
 }

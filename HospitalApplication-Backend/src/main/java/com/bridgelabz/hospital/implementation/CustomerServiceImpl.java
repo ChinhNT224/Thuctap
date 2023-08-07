@@ -129,8 +129,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<OrderInforDto> getOrdersByCustomerId(long customerId) {
-        List<Order> orders = orderRepository.findByUserCreatedByCustomerId(customerId);
+    public List<OrderInforDto> getOrdersByCustomerId(long customerId ,String trangThai) {
+        List<Order> orders = orderRepository.findByUserCreatedByCustomerId(customerId ,trangThai);
         List<OrderInforDto> orderInfos = new ArrayList<>();
 
         for (Order order : orders) {

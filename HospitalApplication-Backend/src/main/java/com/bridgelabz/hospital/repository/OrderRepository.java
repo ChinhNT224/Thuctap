@@ -15,8 +15,8 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tiep_nhan = :date")
     int countOrdersByNgayTao(@Param("date") LocalDate date);
-
-    List<Order> findByUserCreatedByCustomerId(long customerId);
+    @Query("SELECT o FROM Order o WHERE o.trang_thai like :trangThai and o.userCreatedBy.customerId = :customerId")
+    List<Order> findByUserCreatedByCustomerId(long customerId ,String trangThai);
 
 }
 
