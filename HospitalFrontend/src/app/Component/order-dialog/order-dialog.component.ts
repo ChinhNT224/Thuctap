@@ -77,7 +77,7 @@ export class OrderDialogComponent implements OnInit {
       dien_thoai: this.formDkKham.controls['SDT'].value,
       email: this.formDkKham.controls['Email'].value,
       ngay_hen: this.formDkKham.controls['NGAY_HEN'].value,
-      gio_hen: type=1?this.formDkKham.controls['GIO_HEN'].value.concat(':00'):this.formDkKham.controls['GIO_HEN'].value,
+      gio_hen: type==1?this.formDkKham.controls['GIO_HEN'].value.concat(':00'):this.formDkKham.controls['GIO_HEN'].value,
       ngay_tao: this.formDkKham.controls['NGAY_TAO'].value,
       ngay_tiep_nhan: this.formDkKham.controls['NGAY_TN'].value,
       trang_thai:'CHO_XAC_NHAN'
