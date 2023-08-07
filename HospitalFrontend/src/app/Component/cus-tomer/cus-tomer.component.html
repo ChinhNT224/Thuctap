@@ -32,7 +32,7 @@
       <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef style="width: 4%;"> STT</th>
+          <th mat-header-cell *matHeaderCellDef style="width: 10; text-align: center"> STT</th>
           <td mat-cell *matCellDef="let row; let i = index">
             {{ i + 1 +page*pageSize }}
           </td>
@@ -42,25 +42,25 @@
           <td mat-cell *matCellDef="let element"> {{element.ho_ten_nguoi_benh}} </td>
         </ng-container>
         <ng-container matColumnDef="ngaytao">
-          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ngày tạo</th>
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 20%;"> Ngày tạo</th>
           <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ngay_tao |
             date:'dd/MM/yyyy'}} </td>
         </ng-container>
         <!-- Position Column -->
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Ngày Tiếp nhận</th>
-          <td mat-cell *matCellDef="let element"> {{element.ngay_tiep_nhan | date:'dd/MM/yyyy'}} </td>
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 20%;"> Ngày Tiếp nhận</th>
+          <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.ngay_tiep_nhan | date:'dd/MM/yyyy'}} </td>
         </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="symbol" ,color="accent" ,icon="delete">
-          <th mat-header-cell *matHeaderCellDef style="text-align: center;">Trạng thái</th>
+          <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 20%;">Trạng thái</th>
           <td mat-cell *matCellDef=" let element " style="text-align: center;">
             {{element.trang_thai}} </td>
           <!-- <td mat-cell *matCellDef=" let element "> {{viewTrangThai(element)}} </td> -->
         </ng-container>
         <ng-container matColumnDef="thaoTac">
           <th mat-header-cell *matHeaderCellDef mat-sort-header
-              style="text-align: center; width: 10%;"> Thao tác
+              style="text-align: center; width: 20%;"> Thao tác
           </th>
           <td mat-cell *matCellDef="let row; let i = index" class="cell-button"
               style="  text-align: center;">
