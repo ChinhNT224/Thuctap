@@ -51,7 +51,7 @@ export class OrderDialogComponent implements OnInit {
          this.formDkKham.controls['GIOI_TINH'].setValue(response.obj.gioi_tinh)
          this.formDkKham.controls['NGAY_SINH'].setValue(response.obj.ngay_sinh)
          this.formDkKham.controls['Email'].setValue(response.obj.email)
-         this.formDkKham.controls['Health_insurance'].setValue(response.obj.userCreatedBy.health_insurance)
+         this.formDkKham.controls['Health_insurance'].setValue(response.obj.health_insurance)
          this.formDkKham.controls['SDT'].setValue(response.obj.dien_thoai)
          this.formDkKham.controls['NGAY_HEN'].setValue(response.obj.ngay_hen)
          this.formDkKham.controls['GIO_HEN'].setValue(response.obj.gio_hen)
@@ -77,7 +77,8 @@ export class OrderDialogComponent implements OnInit {
       health_insurance: this.formDkKham.controls['Health_insurance'].value,
       ngay_hen: this.formDkKham.controls['NGAY_HEN'].value,
       gio_hen: type==1?this.formDkKham.controls['GIO_HEN'].value.concat(':00'):this.formDkKham.controls['GIO_HEN'].value,
-      trang_thai:'CHO_XAC_NHAN'
+      trang_thai:'CHO_XAC_NHAN',
+      ngay_tao : type==1?new Date():undefined,
     }
     if(type == 1){
       this.user.AddOrder(data, this.id).subscribe(res => {

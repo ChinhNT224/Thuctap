@@ -129,6 +129,7 @@ public class CustomerController {
                 existingOrder.setNgay_sinh(updatedOrder.getNgay_sinh());
                 existingOrder.setDien_thoai(updatedOrder.getDien_thoai());
                 existingOrder.setEmail(updatedOrder.getEmail());
+                existingOrder.setHealth_insurance(updatedOrder.getHealth_insurance());
                 existingOrder.setDia_chi(updatedOrder.getDia_chi());
                 existingOrder.setNgay_hen(updatedOrder.getNgay_hen());
                 existingOrder.setGio_hen(updatedOrder.getGio_hen());
