@@ -3,7 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../Service/user.service';
-import {ExcelService} from '../../Service/excel.service';
+import {Excel, ExcelService} from '../../Service/excel.service';
 
 @Component({
   selector: 'app-accounting',
@@ -11,9 +11,9 @@ import {ExcelService} from '../../Service/excel.service';
   styleUrls: ['./accounting.component.scss']
 })
 export class AccountingComponent implements OnInit {
-  totalRegistrations = 100;
-  totalConfirmations = 80;
-  newRegistrations = 20;
+  totalRegistrations :number;
+  totalConfirmations:number =0;
+  newRegistrationsnum:number=0;
   public opened2 = false;
   pageSize: number = 10;
   page: number = 0;
@@ -50,6 +50,47 @@ export class AccountingComponent implements OnInit {
 
   doExport(){
 
+
+    const header: string[] = [
+      "STT",
+      "Khách hàng",
+      "tên người tạo",
+      "tên người xác nhận",
+      "ngày tạo",
+      "ngày tiếp nhận",
+      "Trạng thái"
+    ];
+    const keys: string[] = [
+      "STT",
+      "nguoi_benh",
+      "nguoi_tao_don",
+      "nguoi_xac_nhan",
+      "ngay_tao",
+      "ngay_tiep_nhan",
+      "trangThai",
+    ];
+    const width: any[] = [10, 20, 30, 20, 20,20,20];
+    this.registrations.forEach((obj,item)=>{
+       obj.STT=item+1
+    })
+
+    let excel: Excel = {
+      title: "Thống kê hóa đơn",
+      subTitle: null,
+      workSheet: null,
+      keys: keys,
+      widths: width,
+      data: this.registrations,
+      groupHeaders: null,
+      groupMerge: null,
+      sheetName: "Hóa đơn",
+      headers:header
+    };
+    let arrayExcel = [];
+    arrayExcel.push(excel);
+
+    let timeSpan = new Date().toISOString();
+    this._exporHelperService.generateExcel("Thống kê đăng kí" + timeSpan, arrayExcel);
   }
 
   doSearh() {

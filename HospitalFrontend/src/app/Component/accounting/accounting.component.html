@@ -8,7 +8,7 @@
 
   <div>
     <label>Số đơn đăng ký:</label>
-    <span>{{ totalRegistrations }}</span>
+    <span>{{ totalItems }}</span>
   </div>
 
   <div>
@@ -18,7 +18,7 @@
 
   <div>
     <label>Số tài khoản đăng ký mới:</label>
-    <span>{{ newRegistrations }}</span>
+    <span>{{ newRegistrationsnum }}</span>
   </div>
 </div>
 <div class="col-8" style="width: 100%; margin: 10px 1462px;">
@@ -50,11 +50,11 @@
   <!-- Position Column -->
   <ng-container matColumnDef="thoigiandki">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian đăng ký</th>
-    <td mat-cell *matCellDef="let element"> {{element.ngay_tao}} </td>
+    <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.ngay_tao}} </td>
   </ng-container>
   <ng-container matColumnDef="thoigianxacnhan">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian xác nhận</th>
-    <td mat-cell *matCellDef="let element"> {{element.ngay_tiep_nhan}} </td>
+    <td mat-cell *matCellDef="let element" style="text-align: center"> {{element.ngay_tiep_nhan}} </td>
   </ng-container>
   <!-- Symbol Column -->
   <ng-container matColumnDef="trangthai" ,color="accent" ,icon="delete">
