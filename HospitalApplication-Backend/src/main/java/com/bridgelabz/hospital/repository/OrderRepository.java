@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +19,17 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     int countOrdersByNgayTao(@Param("date") LocalDate date);
     @Query("SELECT o FROM Order o WHERE o.trang_thai like :trangThai and o.userCreatedBy.customerId = :customerId")
     List<Order> findByUserCreatedByCustomerId(long customerId ,String trangThai);
+
     @Query("SELECT o FROM Order o WHERE  o.userCreatedBy.customerId = :customerId")
     List<Order>findAllBycustomerId(long customerId );
+
+    @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tao >= :startDate AND o.ngay_tao <= :endDate")
+    int countByTimePeriod(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+
+    @Query("SELECT COUNT(o) FROM Order o WHERE o.userConfirmedBy IS NOT NULL AND o.ngay_tao >= :startDate AND o.ngay_tiep_nhan <= :endDate")
+    int countConfirmedByTimePeriod(LocalDateTime startDate, LocalDateTime endDate);
+
+    @Query("SELECT o FROM Order o WHERE  o.userConfirmedBy.role = :role")
+    List<Order> findByUserConfirmedBy_Role(String role);
 }
 
