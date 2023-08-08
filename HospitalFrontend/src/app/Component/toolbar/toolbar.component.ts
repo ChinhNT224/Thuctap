@@ -85,6 +85,9 @@ export class ToolbarComponent implements OnInit {
      this.isLogin = true;
      console.log('is user ', this.isUser);
    }
+    else {
+      this.isLogin = true;
+    }
   }
 
   getCartItemCount() {
@@ -103,6 +106,13 @@ export class ToolbarComponent implements OnInit {
     this.token.remove();
     this.token.logedIn(false);
     this.route.navigateByUrl('/login');
+  }
+  logoutComponent(event: MouseEvent) {
+    console.log('loggout function called');
+    event.preventDefault();
+    this.token.remove();
+    this.token.logedIn(false);
+    this.route.navigateByUrl('/loginCustomer');
   }
   getUpdatedNotes(event) {
   this.ngOnInit();
