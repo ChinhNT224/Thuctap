@@ -1,5 +1,10 @@
-<div>
-  <h2>Thống kê đơn đăng ký</h2>
+<div style="width: 100%;" style="height: 14%;">
+  <app-toolbar flexLayout="row" (toggleEvent)="nameEventHander($event)">
+  </app-toolbar>
+  <!-- <app-toolbar flexLayout="row"></app-toolbar> -->
+</div>
+<div  class="w-full" style="text-align: center;">
+  <h2>Thống kê đơn đăng ký hôm nay</h2>
 
   <div>
     <label>Số đơn đăng ký:</label>
@@ -15,48 +20,62 @@
     <label>Số tài khoản đăng ký mới:</label>
     <span>{{ newRegistrations }}</span>
   </div>
-
-  <div>
-    <label>Chọn ngày:</label>
-    <select>
-      <option>Ngày</option>
-      <!-- Thêm các tùy chọn ngày tại đây -->
-    </select>
-    <select>
-      <option>Tháng</option>
-      <!-- Thêm các tùy chọn tháng tại đây -->
-    </select>
-    <select>
-      <option>Năm</option>
-      <!-- Thêm các tùy chọn năm tại đây -->
-    </select>
-  </div>
 </div>
-
-<table>
-  <thead>
-  <tr>
-    <th>Số thứ tự</th>
-    <th>Khách hàng</th>
-    <th>Người xác nhận</th>
-    <th>Thời gian đăng ký</th>
-    <th>Thời gian xác nhận</th>
-    <th>Thao tác</th>
-  </tr>
-  </thead>
-  <tbody>
-  <!-- Lặp qua danh sách đơn đăng ký và hiển thị trong bảng -->
-  <tr *ngFor="let registration of registrations; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ registration.customer }}</td>
-    <td>{{ registration.confirmationPerson }}</td>
-    <td>{{ registration.registrationTime }}</td>
-    <td>{{ registration.confirmationTime }}</td>
-    <td>
-      <!-- Nút thao tác -->
-      <button (click)="performAction(registration)">Thực hiện</button>
+<div class="col-8" style="width: 100%; margin: 10px 1462px;">
+  <button mat-raised-button [color]="'primary'" class="ml-4 button-create evn-bg-blue"
+            style="border-radius: 10px;">
+    <i class="fa fa-file-excel-o"></i>
+    <span class="ml-2 mr-1">Xuất excel</span>
+  </button>
+</div>
+<table mat-table [dataSource]="registrations">
+  <ng-container matColumnDef="stt">
+    <th mat-header-cell *matHeaderCellDef style="width: 4%;"> STT</th>
+    <td mat-cell *matCellDef="let row; let i = index">
+      {{ i + 1 }}
     </td>
-  </tr>
-  </tbody>
+  </ng-container>
+  <ng-container matColumnDef="khachhang">
+    <th mat-header-cell *matHeaderCellDef style="width: 20%; text-align: center;"> Khách hàng</th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="nguoixacnhan">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Người xác nhận</th>
+    <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.createdDate |
+      date:'dd/MM/yyyy'}} </td>
+  </ng-container>
+  <!-- Position Column -->
+  <ng-container matColumnDef="thoigiandki">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian đăng ký</th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="thoigianxacnhan">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian xác nhận</th>
+    <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+  </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="trangthai" ,color="accent" ,icon="delete">
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;">Trạng thái</th>
+    <td mat-cell *matCellDef=" let element " style="text-align: center;">
+      {{element.active}} </td>
+  </ng-container>
+<tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+<tr class="mat-row" *matNoDataRow>
+  <td class="mat-cell font-semibold" *ngIf="!registrations || registrations; else emptyResult"
+      colspan="12" style="text-align: center;font-weight: bold">
+    Không tìm thấy kết quả phù hợp với từ khóa
+  </td>
+  <ng-template #emptyResult>
+    <td class="mat-cell" colspan="12">
+      <!-- Không tìm thấy kết quả phù hợp với từ khóa "{{
+      input.value
+      }}" -->
+      Không tìm thấy kết quả phù hợp với từ khóa !
+    </td>
+  </ng-template>
+</tr>
 </table>
+<mat-paginator [pageSizeOptions]="[10,25,50,100]" showFirstLastButtons [pageSize]="pageSize"
+               [length]="totalItems" (page)=" onChangePage($event)"></mat-paginator>
 

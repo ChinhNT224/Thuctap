@@ -76,11 +76,11 @@ export class ToolbarComponent implements OnInit {
      this.isAdmin = true;
      this.isLogin = true;
    }
-    if (this.role === 'seller') {
+    if (this.role === 'accounting') {
      this.isSeller = true;
      this.isLogin = true;
    }
-    if (this.role === 'user') {
+    if (this.role === 'reception') {
      this.isUser = true;
      this.isLogin = true;
      console.log('is user ', this.isUser);
