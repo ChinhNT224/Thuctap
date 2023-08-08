@@ -27,10 +27,9 @@ export class OrderDialogComponent implements OnInit {
     GIOI_TINH: [null, [Validators.required]],
     NGAY_SINH: [null, [Validators.required]],
     Email: [null, [Validators.required]],
+    Health_insurance: [null, [Validators.required]],
     SDT: [null, [Validators.required]],
     NGAY_HEN: [null, [Validators.required]],
-    NGAY_TAO:[ null,[Validators.required]],
-    NGAY_TN: [ null,[Validators.required]],
     GIO_HEN: [ null,[Validators.required]]
   });
   gioiTinh: any = [
@@ -52,10 +51,9 @@ export class OrderDialogComponent implements OnInit {
          this.formDkKham.controls['GIOI_TINH'].setValue(response.obj.gioi_tinh)
          this.formDkKham.controls['NGAY_SINH'].setValue(response.obj.ngay_sinh)
          this.formDkKham.controls['Email'].setValue(response.obj.email)
+         this.formDkKham.controls['Health_insurance'].setValue(response.obj.health_insurance)
          this.formDkKham.controls['SDT'].setValue(response.obj.dien_thoai)
          this.formDkKham.controls['NGAY_HEN'].setValue(response.obj.ngay_hen)
-         this.formDkKham.controls['NGAY_TAO'].setValue(response.obj.ngay_tao)
-         this.formDkKham.controls['NGAY_TN'].setValue(response.obj.ngay_tiep_nhan)
          this.formDkKham.controls['GIO_HEN'].setValue(response.obj.gio_hen)
        }
     })
@@ -76,10 +74,9 @@ export class OrderDialogComponent implements OnInit {
       ngay_sinh: this.formDkKham.controls['NGAY_SINH'].value,
       dien_thoai: this.formDkKham.controls['SDT'].value,
       email: this.formDkKham.controls['Email'].value,
+      health_insurance: this.formDkKham.controls['Health_insurance'].value,
       ngay_hen: this.formDkKham.controls['NGAY_HEN'].value,
       gio_hen: type==1?this.formDkKham.controls['GIO_HEN'].value.concat(':00'):this.formDkKham.controls['GIO_HEN'].value,
-      ngay_tao: this.formDkKham.controls['NGAY_TAO'].value,
-      ngay_tiep_nhan: this.formDkKham.controls['NGAY_TN'].value,
       trang_thai:'CHO_XAC_NHAN'
     }
     console.log("daa",JSON.stringify(data))

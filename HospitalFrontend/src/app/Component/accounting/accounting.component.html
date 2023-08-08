@@ -1,0 +1,62 @@
+<div>
+  <h2>Thống kê đơn đăng ký</h2>
+
+  <div>
+    <label>Số đơn đăng ký:</label>
+    <span>{{ totalRegistrations }}</span>
+  </div>
+
+  <div>
+    <label>Số đơn xác nhận:</label>
+    <span>{{ totalConfirmations }}</span>
+  </div>
+
+  <div>
+    <label>Số tài khoản đăng ký mới:</label>
+    <span>{{ newRegistrations }}</span>
+  </div>
+
+  <div>
+    <label>Chọn ngày:</label>
+    <select>
+      <option>Ngày</option>
+      <!-- Thêm các tùy chọn ngày tại đây -->
+    </select>
+    <select>
+      <option>Tháng</option>
+      <!-- Thêm các tùy chọn tháng tại đây -->
+    </select>
+    <select>
+      <option>Năm</option>
+      <!-- Thêm các tùy chọn năm tại đây -->
+    </select>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Số thứ tự</th>
+    <th>Khách hàng</th>
+    <th>Người xác nhận</th>
+    <th>Thời gian đăng ký</th>
+    <th>Thời gian xác nhận</th>
+    <th>Thao tác</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Lặp qua danh sách đơn đăng ký và hiển thị trong bảng -->
+  <tr *ngFor="let registration of registrations; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ registration.customer }}</td>
+    <td>{{ registration.confirmationPerson }}</td>
+    <td>{{ registration.registrationTime }}</td>
+    <td>{{ registration.confirmationTime }}</td>
+    <td>
+      <!-- Nút thao tác -->
+      <button (click)="performAction(registration)">Thực hiện</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

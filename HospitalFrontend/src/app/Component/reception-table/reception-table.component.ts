@@ -1,20 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {PeriodicElement} from '../admin-user/admin-user.component';
-import {DilalogUnlockComponent} from '../dilalog-unlock/dilalog-unlock.component';
-import {MatDialog} from '@angular/material/dialog';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {PeriodicElement} from "../admin-user/admin-user.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ToastrService} from "ngx-toastr";
+import {UserService} from "../../Service/user.service";
 import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../Service/user.service';
 import {DialalogDeleteComponent} from '../dialalog-delete/dialalog-delete.component';
 
 @Component({
-  selector: 'app-cus-tomer',
-  templateUrl: './cus-tomer.component.html',
-  styleUrls: ['./cus-tomer.component.scss']
+  selector: 'app-reception-table',
+  templateUrl: './reception-table.component.html',
+  styleUrls: ['./reception-table.component.scss']
 })
-export class CusTomerComponent implements OnInit {
+export class ReceptionTableComponent implements OnInit {
   pageSize: number = 10;
   page: number = 0;
   public opened2 = false;
@@ -40,14 +38,12 @@ export class CusTomerComponent implements OnInit {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private user: UserService,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.id = localStorage.getItem('id');
     this.doSearh();
   }
-
   doSearh() {
     this.user.getDanhSachOrder(this.id,this.trangThai).subscribe(res => {
       this.dataSource = res.obj

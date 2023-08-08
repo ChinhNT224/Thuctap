@@ -27,6 +27,7 @@ public class Order {
     private Date ngay_sinh;
     private String dien_thoai;
     private String email;
+    private Long health_insurance;
     private String dia_chi;
     private Date ngay_hen;
     private Time gio_hen;
@@ -39,7 +40,7 @@ public class Order {
 
     public Order(int order_id, Customer userCreatedBy, Users userConfirmedBy,
                  String trang_thai, String ho_ten_nguoi_benh, String gioi_tinh, Date ngay_sinh, String dien_thoai,
-                 String email, String dia_chi, Date ngay_hen, Time gio_hen, Date ngay_tao,
+                 String email, Long health_insurance, String dia_chi, Date ngay_hen, Time gio_hen, Date ngay_tao,
                  Date ngay_tiep_nhan) {
         this.order_id = order_id;
         this.userCreatedBy = userCreatedBy;
@@ -50,6 +51,7 @@ public class Order {
         this.ngay_sinh = ngay_sinh;
         this.dien_thoai = dien_thoai;
         this.email = email;
+        this.health_insurance = health_insurance;
         this.dia_chi = dia_chi;
         this.ngay_hen = ngay_hen;
         this.gio_hen = gio_hen;
@@ -129,6 +131,14 @@ public class Order {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getHealth_insurance() {
+        return health_insurance;
+    }
+
+    public void setHealth_insurance(Long health_insurance) {
+        this.health_insurance = health_insurance;
     }
 
     public String getDia_chi() {
