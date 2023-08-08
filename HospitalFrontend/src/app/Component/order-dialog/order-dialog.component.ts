@@ -27,7 +27,7 @@ export class OrderDialogComponent implements OnInit {
     GIOI_TINH: [null, [Validators.required]],
     NGAY_SINH: [null, [Validators.required]],
     Email: [null, [Validators.required]],
-    Health_insurance: [null, [Validators.required]],
+    Health_insurance: [],
     SDT: [null, [Validators.required]],
     NGAY_HEN: [null, [Validators.required]],
     GIO_HEN: [ null,[Validators.required]]
@@ -51,7 +51,7 @@ export class OrderDialogComponent implements OnInit {
          this.formDkKham.controls['GIOI_TINH'].setValue(response.obj.gioi_tinh)
          this.formDkKham.controls['NGAY_SINH'].setValue(response.obj.ngay_sinh)
          this.formDkKham.controls['Email'].setValue(response.obj.email)
-         this.formDkKham.controls['Health_insurance'].setValue(response.obj.health_insurance)
+         this.formDkKham.controls['Health_insurance'].setValue(response.obj.userCreatedBy.health_insurance)
          this.formDkKham.controls['SDT'].setValue(response.obj.dien_thoai)
          this.formDkKham.controls['NGAY_HEN'].setValue(response.obj.ngay_hen)
          this.formDkKham.controls['GIO_HEN'].setValue(response.obj.gio_hen)
