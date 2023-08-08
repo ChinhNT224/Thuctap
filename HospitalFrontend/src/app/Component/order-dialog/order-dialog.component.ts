@@ -79,8 +79,7 @@ export class OrderDialogComponent implements OnInit {
       gio_hen: type==1?this.formDkKham.controls['GIO_HEN'].value.concat(':00'):this.formDkKham.controls['GIO_HEN'].value,
       trang_thai:'CHO_XAC_NHAN'
     }
-    console.log("daa",JSON.stringify(data))
-    if(type = 1){
+    if(type == 1){
       this.user.AddOrder(data, this.id).subscribe(res => {
         if (res) {
           this.dialogRef.close(data);
