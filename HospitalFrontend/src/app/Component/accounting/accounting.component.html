@@ -23,7 +23,7 @@
 </div>
 <div class="col-8" style="width: 100%; margin: 10px 1462px;">
   <button mat-raised-button [color]="'primary'" class="ml-4 button-create evn-bg-blue"
-            style="border-radius: 10px;">
+            style="border-radius: 10px;" (click)="doExport()">
     <i class="fa fa-file-excel-o"></i>
     <span class="ml-2 mr-1">Xuất excel</span>
   </button>
@@ -37,27 +37,30 @@
   </ng-container>
   <ng-container matColumnDef="khachhang">
     <th mat-header-cell *matHeaderCellDef style="width: 20%; text-align: center;"> Khách hàng</th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.nguoi_benh}} </td>
+  </ng-container>
+  <ng-container matColumnDef="nguoitaodon">
+    <th mat-header-cell *matHeaderCellDef style="width: 20%; text-align: center;"> Người tạo đơn</th>
+    <td mat-cell *matCellDef="let element"> {{element.nguoi_tao_don}} </td>
   </ng-container>
   <ng-container matColumnDef="nguoixacnhan">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Người xác nhận</th>
-    <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.createdDate |
-      date:'dd/MM/yyyy'}} </td>
+    <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nguoi_xac_nhan}} </td>
   </ng-container>
   <!-- Position Column -->
   <ng-container matColumnDef="thoigiandki">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian đăng ký</th>
-    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.ngay_tao}} </td>
   </ng-container>
   <ng-container matColumnDef="thoigianxacnhan">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Thời gian xác nhận</th>
-    <td mat-cell *matCellDef="let element"> {{element.mobileNumber}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.ngay_tiep_nhan}} </td>
   </ng-container>
   <!-- Symbol Column -->
   <ng-container matColumnDef="trangthai" ,color="accent" ,icon="delete">
     <th mat-header-cell *matHeaderCellDef style="text-align: center;">Trạng thái</th>
     <td mat-cell *matCellDef=" let element " style="text-align: center;">
-      {{element.active}} </td>
+      {{viewTrangThai(element)}} </td>
   </ng-container>
 <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
 <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>

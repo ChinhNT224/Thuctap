@@ -49,10 +49,12 @@ public class AccountingController {
         for (Order order : confirmedOrders) {
             OrderAccDTO orderAccDTO = new OrderAccDTO(
                     order.getOrder_id(),
+                    order.getHo_ten_nguoi_benh(),
                     order.getUserCreatedBy().getName(),
                     order.getUserConfirmedBy() != null ? order.getUserConfirmedBy().getName() : null,
                     order.getNgay_tao(),
-                    order.getNgay_tiep_nhan()
+                    order.getNgay_tiep_nhan(),
+                    order.getTrang_thai()
             );
             orderAccDTOList.add(orderAccDTO);
         }

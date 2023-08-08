@@ -1,4 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {MatDialog} from '@angular/material/dialog';
+import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../../Service/user.service';
+import {ExcelService} from '../../Service/excel.service';
 
 @Component({
   selector: 'app-accounting',
@@ -21,20 +26,20 @@ export class AccountingComponent implements OnInit {
     'thoigianxacnhan',
     'trangthai',
   ];
-  registrations = [
-    {
-      customer: 'Khách hàng A',
-      confirmationPerson: 'Người A',
-      registrationTime: '2023-08-01',
-      confirmationTime: '2023-08-05'
-    },
-    // Thêm các dữ liệu đơn đăng ký khác tại đây
-  ];
+  registrations: any = [];
+
   nameEventHander($event: any) {
     this.opened2 = $event;
   }
 
+  constructor(
+    private userService: UserService,
+    private _exporHelperService: ExcelService,
+  ) {
+  }
+
   ngOnInit(): void {
+    this.doSearh()
   }
 
   onChangePage(event: any) {
@@ -43,7 +48,34 @@ export class AccountingComponent implements OnInit {
     this.doSearh();
   }
 
-  doSearh() {
+  doExport(){
 
+  }
+
+  doSearh() {
+    this.userService.getAccounting().subscribe((res: any) => {
+      this.registrations = res;
+      this.totalItems = res.length
+      this.paginateData()
+    })
+  }
+
+  viewTrangThai(row: any) {
+    switch (row['trangThai']) {
+      case 'CHO_XAC_NHAN':
+        return 'Chờ xác nhận ';
+      case 'pending':
+        return 'Chưa giải quyết';
+      case 'confirmed':
+        return 'Đã xác nhận';
+      default:
+        return null;
+    }
+  }
+
+  paginateData() {
+    const start = this.page * this.pageSize;
+    const end = start + this.pageSize;
+    this.registrations = this.registrations.slice(start, end);
   }
 }

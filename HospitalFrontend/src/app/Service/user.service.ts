@@ -20,7 +20,9 @@ export class UserService {
  public AddOrder(data:any,id:string) {
    return this.http.post(`${this.baseUrl}/${environment.addOrder}${id}/orders`, data);
  }
-
+ public getAccounting(){
+   return this.http.get(`${this.baseUrl}/${environment.getAccounting}`);
+ }
  public UpdateOrder(data:any,id:string,orderId:string){
    return this.http.put(`${this.baseUrl}/${environment.updateOrder}${id}/orders/${orderId}`, data);
 }

@@ -21,7 +21,7 @@ export const environment = {
   // BookUrl: 'http://localhost:8080',
   // getallbooksurl: 'books/getAllBooks',
 
-
+  getAccounting:'accounting/confirmed-orders',
   getbookbyIdurl: 'books/',
   addandupdatecartUrl: 'books/addandupdatecart',
   sorting: 'books/sorting',
