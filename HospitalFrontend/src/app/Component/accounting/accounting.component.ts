@@ -9,7 +9,7 @@ import {Excel, ExcelService} from '../../Service/excel.service';
 })
 export class AccountingComponent implements OnInit {
   totalRegistrations :number;
-  totalConfirmations:number =0;
+  totalConfirmations:number ;
   newRegistrationsnum:number=0;
   public opened2 = false;
   pageSize: number = 10;
@@ -92,9 +92,17 @@ export class AccountingComponent implements OnInit {
   }
 
   doSearh() {
+    debugger
     this.userService.getAccounting().subscribe((res: any) => {
       this.registrations = res;
       this.totalItems = res.length
+      var tmp=0;
+      for (let i=0 ;i< this.registrations.length;i++){
+        if(this.registrations[i].trangThai=='confirmed'){
+          tmp++;
+        }
+      }
+      this.totalConfirmations=tmp;
       this.paginateData()
     })
   }

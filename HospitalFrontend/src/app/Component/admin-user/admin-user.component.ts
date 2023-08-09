@@ -7,6 +7,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { DilalogUnlockComponent } from "../dilalog-unlock/dilalog-unlock.component";
 import { DialalogDeleteComponent } from "../dialalog-delete/dialalog-delete.component";
 import { ToastrService } from 'ngx-toastr';
+import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
+import {DilalogUserComponent} from '../dilalog-user/dilalog-user.component';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -83,6 +85,19 @@ export class AdminUserComponent implements OnInit {
       this.dataSource = res.obj;
       this.totalItems=res.total;
       this.paginateData();
+    });
+  }
+
+  doAdd(){
+    const dialogRef = this.dialog.open(DilalogUserComponent, {
+      width: '50%',
+      height: 'auto',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toastr.success('Thêm mới thành công', 'thông báo')
+        this.doSearh();
+      }
     });
   }
 
