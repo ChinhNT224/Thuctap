@@ -59,6 +59,7 @@ import { AccountingComponent } from './Component/accounting/accounting.component
 import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
 import { UserCreatedDialogComponent } from './Component/user-created-dialog/user-created-dialog.component';
 import { AddUserDialogComponent } from './Component/add-user-dialog/add-user-dialog.component';
+import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { AddUserDialogComponent } from './Component/add-user-dialog/add-user-dia
     LoginCustomerComponent,
     OrderDialogComponent,
     CusTomerComponent,
+    DilalogUserComponent,
     ReceptionTableComponent,
     DilogUserDangKyComponent,
     AccountingComponent,
