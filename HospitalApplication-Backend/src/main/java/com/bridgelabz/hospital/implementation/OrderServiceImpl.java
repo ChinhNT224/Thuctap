@@ -6,6 +6,7 @@ import com.bridgelabz.hospital.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,5 +27,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Optional<Order> FindById(int id) {
         return orderRepository.findById(id);
+    }
+
+    @Override
+    public List<Order> findAllOrders() {
+        return orderRepository.findAll();
     }
 }

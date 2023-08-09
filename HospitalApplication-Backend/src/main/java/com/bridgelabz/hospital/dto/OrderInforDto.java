@@ -9,12 +9,14 @@ public class OrderInforDto {
     private Date ngay_tiep_nhan;
     private String trang_thai;
     private int order_id;
-    public OrderInforDto(String ho_ten_nguoi_benh, Date ngay_tao, Date ngay_tiep_nhan, String trang_thai ,int order_id ) {
+    private long customerId;
+    public OrderInforDto(String ho_ten_nguoi_benh, Date ngay_tao, Date ngay_tiep_nhan, String trang_thai ,int order_id, long customerId ) {
         this.ho_ten_nguoi_benh = ho_ten_nguoi_benh;
         this.ngay_tao = ngay_tao;
         this.ngay_tiep_nhan = ngay_tiep_nhan;
         this.trang_thai = trang_thai;
         this.order_id=order_id;
+        this.customerId=customerId;
     }
 
     public OrderInforDto() {
@@ -59,6 +61,14 @@ public class OrderInforDto {
 
     public void setOrder_id(int order_id) {
         this.order_id = order_id;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 }
 
