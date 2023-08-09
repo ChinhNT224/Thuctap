@@ -21,7 +21,6 @@ public class Customer {
     private String password;
     private Long mobileNumber;
     private LocalDateTime createdDate;
-    private Long health_insurance;
     private boolean isVerified;
     private Integer active;
     private Integer isdelete;
@@ -53,14 +52,13 @@ public class Customer {
                 + "]";
     }
 
-    public Customer(long customerId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, Long health_insurance, boolean isVerified, Integer active, Integer isdelete) {
+    public Customer(long customerId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, Integer active, Integer isdelete) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
         this.password = password;
         this.mobileNumber = mobileNumber;
         this.createdDate = createdDate;
-        this.health_insurance = health_insurance;
         this.isVerified = isVerified;
         this.active = active;
         this.isdelete = isdelete;
@@ -112,14 +110,6 @@ public class Customer {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public Long getHealth_insurance() {
-        return health_insurance;
-    }
-
-    public void setHealth_insurance(Long health_insurance) {
-        this.health_insurance = health_insurance;
     }
 
     public boolean isVerified() {

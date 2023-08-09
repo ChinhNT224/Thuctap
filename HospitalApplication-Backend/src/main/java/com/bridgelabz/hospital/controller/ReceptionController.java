@@ -63,6 +63,37 @@ public class ReceptionController {
                     .body(new Response("Order not found", 404));
         }
     }
+
+    @PostMapping("/reception/orders/{orderId}/refused")
+    public ResponseEntity<Response> refusedOrder(@PathVariable int orderId, @RequestBody Users receptionUser) {
+        try {
+            // Fetch the order from the database based on orderId
+            Order order = receptionService.getOrderById(orderId);
+
+            if (order == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new Response("Order not found", 404));
+            }
+
+            if (!receptionUser.getRole().equalsIgnoreCase("reception")) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(new Response("Unauthorized access", 401));
+            }
+
+            order.setTrang_thai("Từ chối");
+
+            order.setUserConfirmedBy(receptionUser);
+
+            receptionService.updateOrder(order);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new Response("Order refused successfully", 200));
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Order not found", 404));
+        }
+    }
+
     @GetMapping("/reception/AllOrder")
     public ResponseEntity<Response> findAllOrders() {
         List<Order> orders = orderService.findAllOrders();

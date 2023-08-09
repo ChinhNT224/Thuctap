@@ -33,9 +33,9 @@ export class CusTomerComponent implements OnInit {
   trangThai:string='ALL'
   listTrangThai: any=[
     {name : 'Tất cả' , value:'ALL'},
-    {name : 'chưa giải quyết' , value:'pending'},
+    {name : 'Từ chối' , value:'Từ chối'},
     {name : 'Chờ xác nhận' , value:'CHO_XAC_NHAN'},
-    {name : 'đã xác nhận' , value:'confirmed'}
+    {name : 'Đã xác nhận' , value:'đã xác nhận'}
   ]
   constructor(
     private dialog: MatDialog,
@@ -53,9 +53,9 @@ export class CusTomerComponent implements OnInit {
     switch (row['trang_thai']) {
       case 'CHO_XAC_NHAN':
         return 'Chờ xác nhận ';
-      case 'pending':
-        return 'Chưa giải quyết';
-      case 'confirmed':
+      case 'Từ chối':
+        return 'Từ chối';
+      case 'Đã xác nhận':
         return 'Đã xác nhận';
       default:
         return null;

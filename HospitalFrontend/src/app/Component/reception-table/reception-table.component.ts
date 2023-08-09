@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {PeriodicElement} from "../admin-user/admin-user.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
 import {UserService} from "../../Service/user.service";
 import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
-import {DialalogDeleteComponent} from '../dialalog-delete/dialalog-delete.component';
+
 
 @Component({
   selector: 'app-reception-table',
@@ -25,27 +25,32 @@ export class ReceptionTableComponent implements OnInit {
     'symbol',
     'thaoTac',
   ];
+  id: string;
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
-  id: string;
-  trangThai:string='ALL'
-  listTrangThai: any=[
-    {name : 'Tất cả' , value:'ALL'},
-    {name : 'Chờ xác nhận' , value:'CHO_XAC_NHAN'},
-    {name : 'Đã xác nhận' , value:'DA_XAC_NHAN'},
+  trangThai: string = 'ALL'
+  listTrangThai: any = [
+    {name: 'Tất cả', value: 'ALL'},
+    {name: 'Chờ xác nhận', value: 'CHO_XAC_NHAN'},
+    {name: 'Đã xác nhận', value: 'DA_XAC_NHAN'},
   ]
+
   constructor(
     private dialog: MatDialog,
     private toastr: ToastrService,
     private user: UserService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.id = localStorage.getItem('id');
     this.doSearh();
+    this.id = localStorage.getItem('id');
+    this.name = localStorage.getItem('Name')
+    console.log(this.name)
   }
+
   doSearh() {
-    this.user.getDanhSachOrder(this.id,this.trangThai).subscribe(res => {
+    this.user.GetAllOrder().subscribe((res: any) => {
       this.dataSource = res.obj
       this.totalItems = this.dataSource.length
       this.paginateData();
@@ -65,36 +70,6 @@ export class ReceptionTableComponent implements OnInit {
     });
   }
 
-  doEit(item: any) {
-    const dialogRef = this.dialog.open(OrderDialogComponent, {
-      width: '50%',
-      height: 'auto',
-      data: item.order_id,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.toastr.success('Thông báo', 'Cập nhật Lịch khám thành công')
-        this.doSearh();
-      }
-    });
-  }
-
-  doDelete(item: any) {
-    console.log()
-    const dialogRef = this.dialog.open(DialalogDeleteComponent, {
-      width: 'auto',
-      height: 'auto',
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.user.Delete(this.id, item.order_id).subscribe(res => {
-        if (res) {
-          this.toastr.success('Xóa thành công', 'Thông báo')
-        }
-        this.doSearh();
-      })
-    });
-  }
 
   nameEventHander($event: any) {
     this.opened2 = $event;
@@ -110,5 +85,37 @@ export class ReceptionTableComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.page = event.pageIndex;
     this.doSearh();
+  }
+
+  doXacNhan(item: any) {
+    let data = {
+      userId: this.id,
+      username: this.name,
+      role: "reception"
+    }
+    this.user.Confirm(item.order_id, data).subscribe(res => {
+      if (res) {
+        this.toastr.success('Xác nhận thành công', 'thông báo')
+        this.doSearh();
+      } else {
+        this.toastr.error('Thất bại', 'thông báo')
+      }
+    })
+  }
+
+  doHuy(item: any) {
+    let data = {
+      userId: this.id,
+      username: this.name,
+      role: "reception"
+    }
+    this.user.refuse(item.order_id, data).subscribe(res => {
+      if (res) {
+        this.toastr.success('Hủy thành công', 'thông báo')
+        this.doSearh();
+      } else {
+        this.toastr.error('Hủy thất bại', 'thông báo')
+      }
+    })
   }
 }

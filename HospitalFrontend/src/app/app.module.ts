@@ -56,6 +56,9 @@ import {OrderDialogComponent} from './Component/order-dialog/order-dialog.compon
 import { ReceptionTableComponent } from './Component/reception-table/reception-table.component';
 import { DilogUserDangKyComponent } from './Component/dilog-user-dang-ky/dilog-user-dang-ky.component';
 import { AccountingComponent } from './Component/accounting/accounting.component';
+import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
+import { UserCreatedDialogComponent } from './Component/user-created-dialog/user-created-dialog.component';
+import { AddUserDialogComponent } from './Component/add-user-dialog/add-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,10 @@ import { AccountingComponent } from './Component/accounting/accounting.component
     CusTomerComponent,
     ReceptionTableComponent,
     DilogUserDangKyComponent,
-    AccountingComponent
+    AccountingComponent,
+    OderDetailDialogComponent,
+    UserCreatedDialogComponent,
+    AddUserDialogComponent,
 
   ],
   imports: [

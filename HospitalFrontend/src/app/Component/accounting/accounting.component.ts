@@ -103,9 +103,7 @@ export class AccountingComponent implements OnInit {
     switch (row['trangThai']) {
       case 'CHO_XAC_NHAN':
         return 'Chờ xác nhận ';
-      case 'pending':
-        return 'Chưa giải quyết';
-      case 'confirmed':
+      case 'Đã xác nhận':
         return 'Đã xác nhận';
       default:
         return null;
