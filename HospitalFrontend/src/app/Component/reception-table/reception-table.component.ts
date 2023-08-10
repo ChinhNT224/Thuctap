@@ -80,16 +80,20 @@ export class ReceptionTableComponent implements OnInit {
       userId: this.id,
       username: this.name,
       role: "reception",
-    }
+    };
+
     this.user.Confirm(item.order_id, data).subscribe(res => {
       if (res) {
-        this.toastr.success('Xác nhận thành công', 'thông báo')
+        this.toastr.success('Xác nhận thành công', 'thông báo');
         this.doSearh();
       } else {
-        this.toastr.error('Thất bại', 'thông báo')
+        this.toastr.error('Thất bại', 'thông báo');
       }
-    })
+    });
   }
+
+
+
 
   doHuy(item: any) {
     let data = {

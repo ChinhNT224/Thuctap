@@ -109,8 +109,8 @@ export class AccountingComponent implements OnInit {
 
   viewTrangThai(row: any) {
     switch (row['trangThai']) {
-      case 'CHO_XAC_NHAN':
-        return 'Chờ xác nhận ';
+      case 'Từ chối':
+        return 'Từ chối ';
       case 'Đã xác nhận':
         return 'Đã xác nhận';
       default:

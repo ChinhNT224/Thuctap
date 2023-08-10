@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -50,6 +52,11 @@ public class ReceptionController {
             // Set the trạng thái of the order to "confirmed"
             order.setTrang_thai("Đã xác nhận");
 
+            LocalDate localDate = LocalDate.now();
+            Date currentDate = Date.valueOf(localDate);
+            order.setNgay_tiep_nhan(currentDate);
+
+
             // Set the receptionUser as the user who confirmed the order
             order.setUserConfirmedBy(receptionUser);
 
@@ -81,6 +88,10 @@ public class ReceptionController {
             }
 
             order.setTrang_thai("Từ chối");
+
+            LocalDate localDate = LocalDate.now();
+            Date currentDate = Date.valueOf(localDate);
+            order.setNgay_tiep_nhan(currentDate);
 
             order.setUserConfirmedBy(receptionUser);
 
