@@ -68,7 +68,7 @@
               <ul matTooltip="Hủy" href="javascript:void(0)" (click)="doHuy(row)">
                 <i class='fa fa-trash' style="font-size:24px ;color:#000080" *ngIf="row.trang_thai=='CHO_XAC_NHAN'"></i>
               </ul>
-              <ul matTooltip="Xem chi tiết" href="javascript:void(0)">
+              <ul matTooltip="Xem chi tiết" href="javascript:void(0)" (click)="doView(row)">
                 <i class='fa fa-eye' style="font-size:24px ;color:#000080" ></i>
               </ul>
             </div>

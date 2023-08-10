@@ -57,7 +57,6 @@ import { ReceptionTableComponent } from './Component/reception-table/reception-t
 import { DilogUserDangKyComponent } from './Component/dilog-user-dang-ky/dilog-user-dang-ky.component';
 import { AccountingComponent } from './Component/accounting/accounting.component';
 import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
-import { UserCreatedDialogComponent } from './Component/user-created-dialog/user-created-dialog.component';
 import { AddUserDialogComponent } from './Component/add-user-dialog/add-user-dialog.component';
 import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.component';
 
@@ -89,7 +88,6 @@ import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.comp
     DilogUserDangKyComponent,
     AccountingComponent,
     OderDetailDialogComponent,
-    UserCreatedDialogComponent,
     AddUserDialogComponent,
 
   ],

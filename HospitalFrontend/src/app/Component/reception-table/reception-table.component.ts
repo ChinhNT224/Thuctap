@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
 import {UserService} from "../../Service/user.service";
 import {OrderDialogComponent} from '../order-dialog/order-dialog.component';
+import {OderDetailDialogComponent} from "../oder-detail-dialog/oder-detail-dialog.component";
 
 
 @Component({
@@ -57,19 +58,6 @@ export class ReceptionTableComponent implements OnInit {
     })
   }
 
-  doAdd() {
-    const dialogRef = this.dialog.open(OrderDialogComponent, {
-      width: '50%',
-      height: 'auto',
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.toastr.success('Thêm mới thành công', 'thông báo')
-        this.doSearh();
-      }
-    });
-  }
-
 
   nameEventHander($event: any) {
     this.opened2 = $event;
@@ -117,5 +105,20 @@ export class ReceptionTableComponent implements OnInit {
         this.toastr.error('Hủy thất bại', 'thông báo')
       }
     })
+  }
+
+  doView(item: any) {
+    let param = {
+      id_order: item.order_id,
+      id: item.customerId
+    }
+    const dialogRef = this.dialog.open(OderDetailDialogComponent, {
+      width: '50%',
+      height: 'auto',
+      data: param
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+
+    });
   }
 }

@@ -21,6 +21,10 @@ export class UserService {
   public signUp(data: any) {
     return this.http.post(`${this.baseUrl}/registration`, data);
   }
+
+  public CustermDetail(id:string, idCustem :string){
+    return this.http.get(`${this.baseUrl}/reception/customer/${id}/orders/${idCustem}`);
+  }
   public Confirm(id:string,data:any){
     return this.http.post(`${this.baseUrl}/${environment.confirmOrder}/${id}/confirm`, data);
   }
@@ -43,7 +47,7 @@ export class UserService {
     return this.http.put(`${this.baseUrl}/${environment.updateOrder}${id}/orders/${orderId}`, data);
   }
 
-  public Detail(id: string) {
+  public Detail(id: string ) {
     return this.http.get(`${this.baseUrl}/${environment.DetailOrder}${id}`)
   }
 
