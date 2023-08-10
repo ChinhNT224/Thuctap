@@ -16,31 +16,6 @@ export class AdminComponent implements OnInit {
   constructor(private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.getUserName();
-    this.router.queryParams.subscribe(params => {
-      this.param = params.book;
-      if (this.param === 'unverified') {
-     this.unverified = true;
-     this.orders = false;
-     this.review = false;
-     console.log('unverifed:', this.unverified);
-    }
-      if (this.param === 'order') {
-    this.orders = true;
-    this.unverified = false;
-    this.review = false;
-    }
-      if (this.param === 'review') {
-    this.review = true;
-    this.orders = false;
-    this.unverified = false;
-    }
-      if (this.param === 'books') {
-    this.review = false;
-    this.orders = false;
-    this.unverified = false;
-    }
-  });
   }
 
 }

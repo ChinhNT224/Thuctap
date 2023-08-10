@@ -79,7 +79,7 @@ export class ReceptionTableComponent implements OnInit {
     let data = {
       userId: this.id,
       username: this.name,
-      role: "reception"
+      role: "reception",
     }
     this.user.Confirm(item.order_id, data).subscribe(res => {
       if (res) {
@@ -95,7 +95,7 @@ export class ReceptionTableComponent implements OnInit {
     let data = {
       userId: this.id,
       username: this.name,
-      role: "reception"
+      role: "reception",
     }
     this.user.refuse(item.order_id, data).subscribe(res => {
       if (res) {

@@ -16,7 +16,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSelectModule} from '@angular/material/select';
-import {BooksearchpipePipe} from './Pipe/booksearchpipe.pipe';
 
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -57,14 +56,12 @@ import { ReceptionTableComponent } from './Component/reception-table/reception-t
 import { DilogUserDangKyComponent } from './Component/dilog-user-dang-ky/dilog-user-dang-ky.component';
 import { AccountingComponent } from './Component/accounting/accounting.component';
 import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
-import { AddUserDialogComponent } from './Component/add-user-dialog/add-user-dialog.component';
 import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    BooksearchpipePipe,
     PagenotfoundComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
@@ -88,7 +85,6 @@ import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.comp
     DilogUserDangKyComponent,
     AccountingComponent,
     OderDetailDialogComponent,
-    AddUserDialogComponent,
 
   ],
   imports: [

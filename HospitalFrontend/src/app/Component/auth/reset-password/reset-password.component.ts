@@ -45,7 +45,7 @@ onSubmit() {
 handleResponse(data) {
   this.isLoading = false;
   this.toastr.success('Sucessfull Update Password');
-  this.route.navigateByUrl('\login');
+  this.route.navigateByUrl('/loginCustomer');
 }
 
 }

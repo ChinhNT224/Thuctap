@@ -22,6 +22,10 @@ export class UserService {
     return this.http.post(`${this.baseUrl}/registration`, data);
   }
 
+  public signUpCustomer(data: any) {
+    return this.http.post(`${this.baseUrl}/customer/registration`, data);
+  }
+
   public CustermDetail(id:string, idCustem :string){
     return this.http.get(`${this.baseUrl}/reception/customer/${id}/orders/${idCustem}`);
   }

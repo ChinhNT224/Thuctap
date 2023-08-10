@@ -1,7 +1,7 @@
 <mat-toolbar style="background-color: rgba(8, 4, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen>
     <span *ngIf="isAdmin || isSeller">
       <button id="menuBtn" mat-icon-button (click)="ontoggel(opened)" class="menu">
-  
+
         <mat-icon matTooltip="Main menu">menu</mat-icon>
       </button>
   </span>
@@ -10,8 +10,8 @@
       <!-- logo  name -->
       <div class="logo-name" fxFlex="15">
           <div class="image" style="display: flex; justify-content: flex-start;">
-              <img src=".\assets\education.png" style="height: 35px;" alt="open book" [routerLink]="['']" />
-              <span class="mat-title" fxHide.xs="true">&nbsp;&nbsp;&nbsp;Bookstore</span
+              <img src=".\assets\education.png" style="height: 35px;" alt="Bệnh viện A" [routerLink]="['']" />
+              <span class="mat-title" fxHide.xs="true">&nbsp;&nbsp;&nbsp;Hospital</span
         >
       </div>
     </div>
@@ -24,19 +24,6 @@
       fxFlex.sm="70"
     >
     </div>
-    <div class="wish-list" align="center" *ngIf="!isAdmin">
-      <span style="color: #FFFFFF; font-size: small;"></span>
-      <button mat-icon-button  routerLink="/wish" matTooltip="Wishlist">
-      <mat-icon matBadge="{{wishlistLength}}" matBadgeSize="small" >favorite_border</mat-icon>
-      </button>
-      </div>
-    <!-- Shooping cart -->
-    <div class="cart" align="center" *ngIf="!isAdmin">
-      <span style="color: #ffffff; font-size: small;">Cart</span>
-              <button mat-icon-button routerLink="/cart" matTooltip="Cart">
-                    <mat-icon matBadge="{{ length }}" matBadgeSize="small">add_shopping_cart</mat-icon>
-               </button>
-          </div>
           <!-- to give 1 space for mobile -->
           &nbsp;
           <!-- Profile -->

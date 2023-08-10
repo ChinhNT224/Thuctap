@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { BookService } from 'src/app/Service/book.service';
-import { CartService } from 'src/app/Service/cart.service';
 import { TokenService } from 'src/app/Service/token.service';
-import { WishlistService } from 'src/app/Service/wishlist.service';
+
 
 @Component({
   selector: 'app-toolbar-user',
@@ -14,29 +12,11 @@ import { WishlistService } from 'src/app/Service/wishlist.service';
 export class ToolbarUserComponent implements OnInit {
 
   constructor(
-    private service: BookService,
                private token: TokenService,
                private route: Router,
-               private cartService: CartService,
-               private wishlistService: WishlistService,
-           
   ) { }
 
   ngOnInit(): void {
-    this.wishlistService.autoRefresh$.subscribe(() => {
-
-      this. getWishlistCount();
-    }
-
-    );
-    this. getWishlistCount();
-
-    this.cartService.autoRefresh$.subscribe(() => {
-      this.getCartItemCount();
-
-    });
-
-    this.getCartItemCount();
     this.name = localStorage.getItem('Name');
     this.role = localStorage.getItem('role');
     console.log('role check toolbar', this.role);
@@ -59,9 +39,6 @@ export class ToolbarUserComponent implements OnInit {
 
   opened = false;
 
-
-
-
   name: any;
   id: any;
   isUser = false;
@@ -77,22 +54,10 @@ export class ToolbarUserComponent implements OnInit {
  @Input() function: any;
 
 
-  wishlistLength: number;
-
   ontoggel(input: any) {
     console.log('input' + input);
     this.toggleEvent.emit(input);
     this.opened = !this.opened;
-  }
-  getCartItemCount() {
-    this.cartService.getCartItemCount().subscribe((response: any) => {
-      this.length = response.obj;
-      console.log('total number of itemes are' + response.obj);
-     });
-  }
-  bookSearch() {
-    // console.log(this.bookName);
-    this.service.setSearchBookData(this.userName);
   }
   logout(event: MouseEvent) {
     console.log('loggout function called');
@@ -103,11 +68,5 @@ export class ToolbarUserComponent implements OnInit {
   }
   getUpdatedNotes(event) {
   this.ngOnInit();
-  }
-  getWishlistCount() {
-    this.wishlistService.getWishlistCount().subscribe((response: any) => {
-      this.wishlistLength = response.obj;
-      console.log('total number wishBook are' + response.obj);
-     });
   }
 }

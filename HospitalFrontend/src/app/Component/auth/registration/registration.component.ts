@@ -19,7 +19,6 @@ export class RegistrationComponent implements OnInit {
     password: null,
     confirmPassword: null,
     mobileNumber: null,
-    role: null,
   };
   constructor(private user: UserService,
               private route: Router,
@@ -36,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   }
   onSubmit() {
     this.isloading = true;
-    this.user.signUp(this.form).subscribe(
+    this.user.signUpCustomer(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -45,7 +44,7 @@ export class RegistrationComponent implements OnInit {
     this.message = data.message;
     this.isloading = false;
     console.log(data);
-    this.route.navigateByUrl('/login');
+    this.route.navigateByUrl('/loginCustomer');
     this.toastr.success('Sucessfull Registration Done ');
 
   }

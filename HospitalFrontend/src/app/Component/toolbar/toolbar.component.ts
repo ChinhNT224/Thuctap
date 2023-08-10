@@ -1,9 +1,6 @@
-import { CartService } from 'src/app/Service/cart.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { BookService } from 'src/app/Service/book.service';
 import { TokenService } from 'src/app/Service/token.service';
 import { Router } from '@angular/router';
-import { WishlistService } from 'src/app/Service/wishlist.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -12,11 +9,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  constructor( private service: BookService,
-               private token: TokenService,
+  constructor( private token: TokenService,
                private route: Router,
-               private cartService: CartService,
-               private wishlistService: WishlistService,
                private toastr: ToastrService
     ) { }
 
@@ -24,9 +18,6 @@ export class ToolbarComponent implements OnInit {
 
 
   opened = false;
-
-
-
 
   name: any;
   id: any;
@@ -53,20 +44,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.wishlistService.autoRefresh$.subscribe(() => {
-
-      this. getWishlistCount();
-    }
-
-    );
-    this. getWishlistCount();
-
-    this.cartService.autoRefresh$.subscribe(() => {
-      this.getCartItemCount();
-
-    });
-
-    this.getCartItemCount();
     this.name = localStorage.getItem('Name');
     this.userId=localStorage.getItem('id');
     console.log('idUser',this.userId)
@@ -89,17 +66,6 @@ export class ToolbarComponent implements OnInit {
       this.isLogin = true;
     }
   }
-
-  getCartItemCount() {
-    this.cartService.getCartItemCount().subscribe((response: any) => {
-      this.length = response.obj;
-      console.log('total number of itemes are' + response.obj);
-     });
-  }
-  bookSearch() {
-    // console.log(this.bookName);
-    this.service.setSearchBookData(this.bookName);
-  }
   logout(event: MouseEvent) {
     console.log('loggout function called');
     event.preventDefault();
@@ -116,12 +82,6 @@ export class ToolbarComponent implements OnInit {
   }
   getUpdatedNotes(event) {
   this.ngOnInit();
-  }
-  getWishlistCount() {
-    this.wishlistService.getWishlistCount().subscribe((response: any) => {
-      this.wishlistLength = response.obj;
-      console.log('total number wishBook are' + response.obj);
-     });
   }
   detailUser(){
     console.log('Redirected to page no ' + this.userId);

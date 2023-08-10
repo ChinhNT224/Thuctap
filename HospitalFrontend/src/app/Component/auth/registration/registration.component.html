@@ -9,7 +9,7 @@
                 <div class="imgLogo">
                     <img src="assets\education.svg" alt="">
                 </div>
-                <h2 class="title">Bookstore</h2>
+                <h2 class="title">Hospital</h2>
             </div>
         </div>
         <br>
@@ -71,7 +71,7 @@
             <div class="example-container">
                 <mat-form-field style="width: 220px;" appearance="outline">
                     <mat-label>Enter password</mat-label>
-                    <input #password="ngModel" matInput required type="password" minlength="5" [(ngModel)]="form.password" name="password" pattern="^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$">
+                    <input #password="ngModel" matInput required type="password" minlength="5" [(ngModel)]="form.password" name="password" >
                     <mat-error>Please Enter Strong Password</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="width: 220px; padding-left: 6px;">
@@ -82,16 +82,10 @@
             </div>
             <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>Enter your Phone Number </mat-label>
-                <input #phoneNumber="ngModel" pattern="^[6-9]\d{9}$" [(ngModel)]="form.mobileNumber" minlength="10" maxlength="10" name="mobileNumber" matInput placeholder="Placeholder" required>
+                <input #phoneNumber="ngModel" [(ngModel)]="form.mobileNumber" minlength="10" maxlength="10" name="mobileNumber" matInput placeholder="Placeholder" required>
                 <mat-icon style="color: #e1e4e4;" matSuffix>phone</mat-icon>
                 <mat-error>Enter valid Phone number </mat-error>
             </mat-form-field>
-            <h4 style="margin-right: 130px;">Register as</h4>
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="form.role" name="role">
-                <mat-radio-button id="userRadio" value="user" required="required"> User </mat-radio-button> &nbsp;
-                <mat-radio-button id="sellerRadio" value="seller" required="required">Seller </mat-radio-button> &nbsp;
-            </mat-radio-group>
-
             <br>
             <br>
             <div class="text-right">
