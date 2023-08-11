@@ -21,14 +21,12 @@ export class ToolbarComponent implements OnInit {
 
   name: any;
   id: any;
-  isUser = false;
-  isSeller = false;
+  isReception = false;
+  isAccounting = false;
   isAdmin = false;
   userId:any;
   role: string;
   length: any;
-  bookName: string;
-  totalItem;
   isbudget = false;
   isLogin = false;
  @Input() output: any;
@@ -54,13 +52,13 @@ export class ToolbarComponent implements OnInit {
      this.isLogin = true;
    }
     if (this.role === 'accounting') {
-     this.isSeller = true;
+     this.isAccounting = true;
      this.isLogin = true;
    }
     if (this.role === 'reception') {
-     this.isUser = true;
+     this.isReception = true;
      this.isLogin = true;
-     console.log('is user ', this.isUser);
+     console.log('is user ', this.isReception);
    }
     else {
       this.isLogin = true;
@@ -87,8 +85,5 @@ export class ToolbarComponent implements OnInit {
     console.log('Redirected to page no ' + this.userId);
     this.route.navigateByUrl('userid/' + this.userId);
   }
-
-
-
 
 }

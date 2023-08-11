@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: rgba(4, 25, 131, 0.829);" fxLayout="row" xLayoutAlign="space-between center"
              fullscreen>
-    <span *ngIf="isAdmin || isSeller">
+    <span *ngIf="isAdmin">
     <button id="menuBtn" mat-icon-button (click)="ontoggel(opened)" class="menu">
 
       <mat-icon matTooltip="Main menu">menu</mat-icon>
@@ -11,7 +11,7 @@
   <!-- logo  name -->
   <div class="logo-name" fxFlex="15">
     <div class="image" style="display: flex; justify-content: flex-start;">
-      <img src=".\assets\education.png" style="height: 35px;" alt="Bệnh viện A" [routerLink]="['']"/>
+      <img src=".\assets\Hospital.png" style="height: 35px;" alt="Bệnh viện A" [routerLink]="['']"/>
       <span class="mat-title" fxHide.xs="true">&nbsp;&nbsp;&nbsp;Hospital</span
       >
     </div>
@@ -70,11 +70,11 @@
         <mat-icon>account_circle</mat-icon>
         <span>Thông tin cá nhân</span>
       </button>
-      <button mat-menu-item (click)="logout($event)" *ngIf="isAdmin || isSeller || isUser">
+      <button mat-menu-item (click)="logout($event)" *ngIf="isAdmin || isReception || isAccounting">
         <mat-icon>logout</mat-icon>
         <span>Đăng xuất</span>
       </button>
-      <button mat-menu-item (click)="logoutComponent($event)" *ngIf="!isAdmin && !isSeller &&!isUser">
+      <button mat-menu-item (click)="logoutComponent($event)" *ngIf="!isAdmin && !isReception && !isAccounting">
         <mat-icon>logout</mat-icon>
         <span>Đăng xuất</span>
       </button>

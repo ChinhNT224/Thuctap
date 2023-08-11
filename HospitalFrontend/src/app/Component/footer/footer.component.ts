@@ -7,11 +7,11 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  isUser = false;
+  isAccounting = false;
   opened = true;
   public opened2 = false;
 
-  isSeller = false;
+  isReception = false;
   isAdmin = false;
   role: string;
   isLogin = false;
@@ -27,14 +27,14 @@ export class FooterComponent implements OnInit {
      this.isAdmin = true;
      this.isLogin = true;
    }
-    if (this.role === 'seller') {
-     this.isSeller = true;
+    if (this.role === 'accounting') {
+     this.isAccounting = true;
      this.isLogin = true;
    }
-    if (this.role === 'user') {
-     this.isUser = true;
+    if (this.role === 'reception') {
+     this.isReception = true;
      this.isLogin = true;
-     console.log('is user ', this.isUser);
+     console.log('is user ', this.isReception);
    }
   }
   public setTitle( dashboard: string) {

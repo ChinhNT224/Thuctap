@@ -56,7 +56,6 @@ public class ReceptionController {
             Date currentDate = Date.valueOf(localDate);
             order.setNgay_tiep_nhan(currentDate);
 
-
             // Set the receptionUser as the user who confirmed the order
             order.setUserConfirmedBy(receptionUser);
 

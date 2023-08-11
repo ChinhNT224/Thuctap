@@ -48,7 +48,7 @@ export class DilalogChangePassWordComponent implements OnInit {
         .subscribe((res: any) => {
           if (res.statusCode == 200) {
             this.toastr.success("Thông báo", res.message)
-            this.router.navigateByUrl("books");
+            window.history.back();
           }
         });
     }

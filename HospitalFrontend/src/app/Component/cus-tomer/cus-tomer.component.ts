@@ -35,7 +35,7 @@ export class CusTomerComponent implements OnInit {
     {name : 'Tất cả' , value:'ALL'},
     {name : 'Từ chối' , value:'Từ chối'},
     {name : 'Chờ xác nhận' , value:'CHO_XAC_NHAN'},
-    {name : 'Đã xác nhận' , value:'đã xác nhận'}
+    {name : 'Đã xác nhận' , value:'Đã xác nhận'}
   ]
   constructor(
     private dialog: MatDialog,

@@ -57,7 +57,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
     this.userService.UpdateInfor(data).subscribe((res: any) => {
       if (res.statusCode == 200) {
         this.toastr.success(res.message, "ok");
-        this.route1.navigateByUrl("books");
+        window.history.back(); // Chuyển hướng người dùng trở lại trang trước đó
       }
     });
   }

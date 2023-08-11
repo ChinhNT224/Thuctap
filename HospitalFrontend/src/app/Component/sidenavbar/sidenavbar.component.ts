@@ -14,8 +14,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 export class SidenavbarComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) public sidenav: MatSidenavModule;
-  isSeller = false;
-  isUser = false;
+  isReception = false;
+  isAccounting = false;
   isAdmin=false;
   role:string;
   isLogin = false;
@@ -38,14 +38,14 @@ export class SidenavbarComponent implements OnInit {
      this.isAdmin = true;
      this.isLogin = true;
    }
-    if (this.role === 'seller') {
-     this.isSeller = true;
+    if (this.role === 'accounting') {
+     this.isAccounting = true;
      this.isLogin = true;
    }
-    if (this.role === 'user') {
-     this.isUser = true;
+    if (this.role === 'reception') {
+     this.isReception = true;
      this.isLogin = true;
-     console.log('is user ', this.isUser);
+     console.log('is user ', this.isReception);
    }
    this.role= localStorage.getItem('role');
    console.log('role check sidenav',this.role);
@@ -53,16 +53,20 @@ export class SidenavbarComponent implements OnInit {
    {
      this.isAdmin=true;
    }
-   if (this.role === 'seller')
+   if (this.role === 'accounting')
    {
-     this.isSeller=true;
+     this.isAccounting=true;
    }
+    if (this.role === 'reception')
+    {
+      this.isAccounting=true;
+    }
   }
   User(){
     this.router.navigate(['user']);
   }
   Home(){
-    this.router.navigate(['chart']);
+    this.router.navigate(['admin']);
   }
 
   orderStatus() {
