@@ -80,6 +80,7 @@ export class ReceptionTableComponent implements OnInit {
       userId: this.id,
       username: this.name,
       role: "reception",
+      ngay_tiep_nhan: new Date().getTime(),
     };
 
     this.user.Confirm(item.order_id, data).subscribe(res => {
