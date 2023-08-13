@@ -35,7 +35,7 @@ const routes: Routes = [
   {path:'userid/:userId',component:ThongTinTaiKhoanComponent},
   {path:'passWord/:userId',component:DilalogChangePassWordComponent},
   {path:'customerid/:customerId',component:ThongTinTaiKhoanComponent},
-  {path:'passWord/:customerId',component:DilalogChangePassWordComponent},
+  {path:'passWordCustomer/:customerId',component:DilalogChangePassWordComponent},
   {path:'Customer',component:CusTomerComponent},
   {path:'ReceptionTable',component:ReceptionTableComponent},
   {path:'Accouting',component:AccountingComponent},

@@ -113,6 +113,7 @@ export class UserService {
       );
   }
 
+
   public UpdatepassWord(userId: number, data: any) {
     return this.http
       .put(`${environment.BASE_URL}/${environment.UpdatePassword}/${userId}`, data, {headers: new HttpHeaders({token: localStorage.token})});
@@ -123,21 +124,19 @@ export class UserService {
       .put(`${environment.BASE_URL}/${environment.Updateinfor}`, data, {headers: new HttpHeaders({token: localStorage.token})});
   }
 
-  public DetailCustomer(customerId: number) {
-    return this.httpService
-      // tslint:disable-next-line: max-line-length
-      .get(`${environment.BASE_URL}/${environment.GetCustomer}/${customerId}`, {headers: new HttpHeaders({token: localStorage.token})})
-      .pipe(
-      );
-  }
-
-  public UpdatepassWordCustomer(customerId: number, data: any) {
+  public DetailCustomer(customerId: any) {
     return this.http
-      .put(`${environment.BASE_URL}/${environment.UpdatePasswordCustomer}/${customerId}`, data, {headers: new HttpHeaders({token: localStorage.token})});
+      // tslint:disable-next-line: max-line-length
+      .get(`${environment.BASE_URL}/${environment.GetCustomer}/${customerId}`)
+    ;
+  }
+  public UpdatepassWordCustomer(customerId: any, data: any):Observable<any> {
+    return this.http
+      .put(`${environment.BASE_URL}/${environment.UpdatePasswordCustomer}/${customerId}`, data);
   }
 
   public UpdateInforCustomer(data: any) {
     return this.http
-      .put(`${environment.BASE_URL}/${environment.UpdateinforCustomer}`, data, {headers: new HttpHeaders({token: localStorage.token})});
+      .put(`${environment.BASE_URL}/${environment.UpdateinforCustomer}`, data);
   }
 }

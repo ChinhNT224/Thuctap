@@ -40,7 +40,12 @@ export class ThongTinTaiKhoanComponent implements OnInit {
     this.customerId = this.route.snapshot.paramMap.get("customerId");
     console.log("userId:", this.userId);
     console.log("customerId:", this.customerId);
-    this.getUserAndCustomer();
+    if(this.userId){
+      this.getUserAndCustomer();
+    }
+    if(this.customerId){
+      this.DetailCustommer();
+    }
   }
 
   getUserAndCustomer() {
@@ -53,6 +58,8 @@ export class ThongTinTaiKhoanComponent implements OnInit {
       });
     }
 
+  }
+  DetailCustommer(){
     if (this.customerId) {
       console.log("Calling DetailCustomer API with customerId:", this.customerId);
       this.userService.DetailCustomer(this.customerId).subscribe((response: any) => {
@@ -108,7 +115,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
     }
     if (this.customerId) {
       console.log("Redirecting to change password for customerId:", this.customerId);
-      this.router.navigateByUrl("passWord/" + this.customerId);
+      this.router.navigateByUrl("passWordCustomer/" + this.customerId);
     }
   }
 
