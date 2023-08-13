@@ -57,6 +57,7 @@ import { DilogUserDangKyComponent } from './Component/dilog-user-dang-ky/dilog-u
 import { AccountingComponent } from './Component/accounting/accounting.component';
 import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
 import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.component';
+import { HomeComponent } from './Component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.comp
     DilogUserDangKyComponent,
     AccountingComponent,
     OderDetailDialogComponent,
+    HomeComponent,
 
   ],
   imports: [

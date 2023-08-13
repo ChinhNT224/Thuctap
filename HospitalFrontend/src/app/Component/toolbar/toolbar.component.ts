@@ -25,6 +25,7 @@ export class ToolbarComponent implements OnInit {
   isAccounting = false;
   isAdmin = false;
   userId:any;
+  customerId:any;
   role: string;
   length: any;
   isbudget = false;
@@ -44,6 +45,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.name = localStorage.getItem('Name');
     this.userId=localStorage.getItem('id');
+    this.customerId=localStorage.getItem('id');
     console.log('idUser',this.userId)
     this.role = localStorage.getItem('role');
     console.log('role check toolbar', this.role);
@@ -86,4 +88,8 @@ export class ToolbarComponent implements OnInit {
     this.route.navigateByUrl('userid/' + this.userId);
   }
 
+  detailCustomer(){
+    console.log('Redirected to page no ' + this.customerId);
+    this.route.navigateByUrl('customerid/' + this.customerId);
+  }
 }

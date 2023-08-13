@@ -1,12 +1,10 @@
 package com.bridgelabz.hospital.controller;
 
-import com.bridgelabz.hospital.dto.CustomerDto;
-import com.bridgelabz.hospital.dto.OrderDetailDto;
-import com.bridgelabz.hospital.dto.OrderDto;
-import com.bridgelabz.hospital.dto.OrderInforDto;
+import com.bridgelabz.hospital.dto.*;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
 import com.bridgelabz.hospital.entity.Users;
+import com.bridgelabz.hospital.repository.CustomerRepository;
 import com.bridgelabz.hospital.response.Response;
 import com.bridgelabz.hospital.service.CustomerService;
 import com.bridgelabz.hospital.service.OrderService;
@@ -14,6 +12,7 @@ import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -30,6 +29,8 @@ public class CustomerController {
     private CustomerService customerService;
      @Autowired
      private OrderService orderService;
+    @Autowired
+    private BCryptPasswordEncoder encryption;
     @PostMapping("/customer/registration")
     public ResponseEntity<Response> registration(@RequestBody CustomerDto information) {
         boolean result = customerService.register(information);
@@ -79,6 +80,47 @@ public class CustomerController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new Response("Customer not found", 404));
+        }
+    }
+
+    @GetMapping("DetailCustomer/{customerId}")
+    public ResponseEntity<Response> detailCustomer(@PathVariable long customerId) {
+        Optional<Customer> customerOptional = customerService.findCustomerById(customerId);
+        Customer customer = customerOptional.get();
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .body(new Response("delete", 200, customer));
+    }
+
+    @PutMapping("updateInfoCustomer")
+    public ResponseEntity<Response> updateInfo(@RequestBody CustomerDto info) {
+        // Ko đổi đc info email
+        Customer customer = customerService.findByEmail(info.getEmail());
+        if (customer != null) {
+            customer.setName(info.getName());
+            customer.setMobileNumber(info.getMobileNumber());
+            customerService.saveCustomer(customer); // Sử dụng customerService để lưu thay đổi
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(new Response("Cập nhật thông tin thành công", 200));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Không tìm thấy khách hàng", 404));
+        }
+    }
+
+    @PutMapping("updatePasswordCustomer/{id}")
+    public ResponseEntity<Response> updatePassword(@PathVariable Long id, @RequestBody CustomerDto info) {
+        // Ko đổi đc info email
+        Optional<Customer> customerOptional = customerService.findCustomerById(id);
+        if (customerOptional.isPresent()) {
+            Customer customer = customerOptional.get();
+            String epassword = encryption.encode(info.getPassword());
+            customer.setPassword(epassword);
+            customerService.saveCustomer(customer); // Sử dụng customerService để lưu thay đổi
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(new Response("Đổi mật khẩu thành công", 200));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new Response("Không tìm thấy khách hàng", 404));
         }
     }
 

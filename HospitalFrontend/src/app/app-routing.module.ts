@@ -15,13 +15,15 @@ import {Customer} from "./Model/customer.model";
 import {CusTomerComponent} from "./Component/cus-tomer/cus-tomer.component";
 import {ReceptionTableComponent} from "./Component/reception-table/reception-table.component";
 import {AccountingComponent} from "./Component/accounting/accounting.component";
+import {HomeComponent} from "./Component/home/home.component";
 
 const routes: Routes = [
 
   {
-    path: '', redirectTo: 'loginCustomer',
+    path: '', redirectTo: 'Home',
     pathMatch: 'full'
   },
+  {path: 'Home', component: HomeComponent },
   {path: 'update-password/:token', component: ResetPasswordComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
   {path: 'login', component: LoginComponentComponent},
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'user',component:AdminUserComponent},
   {path:'userid/:userId',component:ThongTinTaiKhoanComponent},
   {path:'passWord/:userId',component:DilalogChangePassWordComponent},
+  {path:'customerid/:customerId',component:ThongTinTaiKhoanComponent},
+  {path:'passWord/:customerId',component:DilalogChangePassWordComponent},
   {path:'Customer',component:CusTomerComponent},
   {path:'ReceptionTable',component:ReceptionTableComponent},
   {path:'Accouting',component:AccountingComponent},

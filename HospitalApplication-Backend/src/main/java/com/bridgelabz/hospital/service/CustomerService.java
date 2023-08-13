@@ -1,11 +1,9 @@
 package com.bridgelabz.hospital.service;
 
 import com.bridgelabz.hospital.dto.CustomerDto;
-import com.bridgelabz.hospital.dto.OrderDetailDto;
 import com.bridgelabz.hospital.dto.OrderInforDto;
 import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
-import com.bridgelabz.hospital.request.LoginInformation;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +31,10 @@ public interface CustomerService {
     void deleteOrderIfPendingConfirmation(Order order);
 
     List<OrderInforDto> getOrdersByCustomerId(long customerId ,String trangThai);
+
+    void saveCustomer(Customer customer);
+
+    Optional<Customer> findCustomerById(Long id);
 
 
     List<String> searchPatients(Customer customer, String query);

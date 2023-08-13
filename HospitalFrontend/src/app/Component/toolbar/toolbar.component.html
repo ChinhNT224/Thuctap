@@ -66,7 +66,11 @@
       </div>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="detailUser()">
+      <button mat-menu-item (click)="detailUser()" *ngIf="isAdmin || isReception || isAccounting">
+        <mat-icon>account_circle</mat-icon>
+        <span>Thông tin cá nhân</span>
+      </button>
+      <button mat-menu-item (click)="detailCustomer()" *ngIf="!isAdmin && !isReception && !isAccounting">
         <mat-icon>account_circle</mat-icon>
         <span>Thông tin cá nhân</span>
       </button>

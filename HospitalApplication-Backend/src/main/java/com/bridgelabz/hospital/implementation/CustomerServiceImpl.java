@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -173,6 +174,15 @@ public class CustomerServiceImpl implements CustomerService {
             return matchingPatientNames;
         }
         return matchingPatientNames;
+    }
+    @Override
+    public void saveCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public Optional<Customer> findCustomerById(Long id) {
+        return customerRepository.findCustomerById(id);
     }
 
 }
