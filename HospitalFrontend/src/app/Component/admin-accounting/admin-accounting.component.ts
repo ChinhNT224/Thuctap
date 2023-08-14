@@ -11,7 +11,6 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./admin-accounting.component.scss']
 })
 export class AdminAccountingComponent implements OnInit {
-  totalRegistrations :number;
   isAdmin = false;
   totalConfirmations:number ;
   newRegistrationsnum:number=0;
@@ -42,6 +41,7 @@ export class AdminAccountingComponent implements OnInit {
   role: string;
 
   ngOnInit(): void {
+    this.setTimePeriod('today');
     this.doSearh();
     this.role = localStorage.getItem("role");
     this.setTitle("Hospital");
@@ -109,6 +109,20 @@ export class AdminAccountingComponent implements OnInit {
     this._exporHelperService.generateExcel("Thống kê đăng kí" + timeSpan, arrayExcel);
   }
 
+  setTimePeriod(timePeriod: string) {
+    this.userService.getAccountingByTimePeriod(timePeriod).subscribe(
+      (res: any) => {
+        this.registrations = res;
+        this.totalItems = res.totalOrders; // Sử dụng giá trị từ trường 'totalOrders' của JSON
+        this.totalConfirmations = res.confirmedOrders; // Sử dụng giá trị từ trường 'confirmedOrders' của JSON
+        this.newRegistrationsnum = res.newCustomers; // Sử dụng giá trị từ trường 'newCustomers' của JSON
+        this.paginateData();
+      },
+      (error) => {
+        // Xử lý lỗi (nếu có)
+      }
+    );
+  }
   doSearh() {
     debugger
     this.userService.getAccounting().subscribe((res: any) => {

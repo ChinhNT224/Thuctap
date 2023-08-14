@@ -26,14 +26,15 @@ export class ReceptionTableComponent implements OnInit {
     'symbol',
     'thaoTac',
   ];
-  id: string;
   name: string;
   dataSource: any = new MatTableDataSource<PeriodicElement>();
-  trangThai: string = 'ALL'
-  listTrangThai: any = [
-    {name: 'Tất cả', value: 'ALL'},
-    {name: 'Chờ xác nhận', value: 'CHO_XAC_NHAN'},
-    {name: 'Đã xác nhận', value: 'DA_XAC_NHAN'},
+  id: string;
+  trangThai:string='ALL'
+  listTrangThai: any=[
+    {name : 'Tất cả' , value:'ALL'},
+    {name : 'Từ chối' , value:'Từ chối'},
+    {name : 'Chờ xác nhận' , value:'CHO_XAC_NHAN'},
+    {name : 'Đã xác nhận' , value:'Đã xác nhận'}
   ]
 
   constructor(
@@ -53,11 +54,26 @@ export class ReceptionTableComponent implements OnInit {
   doSearh() {
     this.user.GetAllOrder().subscribe((res: any) => {
       this.dataSource = res.obj
+      if (this.trangThai !== 'ALL') {
+        this.dataSource = this.dataSource.filter(order => order.trang_thai === this.trangThai);
+      }
       this.totalItems = this.dataSource.length
       this.paginateData();
     })
   }
 
+  viewTrangThai(row: any) {
+    switch (row['trang_thai']) {
+      case 'CHO_XAC_NHAN':
+        return 'Chờ xác nhận ';
+      case 'Từ chối':
+        return 'Từ chối';
+      case 'Đã xác nhận':
+        return 'Đã xác nhận';
+      default:
+        return null;
+    }
+  }
 
   nameEventHander($event: any) {
     this.opened2 = $event;
@@ -92,9 +108,6 @@ export class ReceptionTableComponent implements OnInit {
       }
     });
   }
-
-
-
 
   doHuy(item: any) {
     let data = {

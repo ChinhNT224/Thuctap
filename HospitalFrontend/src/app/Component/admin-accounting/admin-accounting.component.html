@@ -14,7 +14,12 @@
       <mat-sidenav-content class="sidenav-content">
         <div *ngIf="isAdmin">
           <div class="w-full p-2" style="text-align: center;">
-              <h2>Thống kê đơn đăng ký hôm nay</h2>
+              <h1>Thống kê đơn đăng ký</h1>
+            <div class="time-period-buttons">
+              <button mat-raised-button [color]="'primary'" (click)="setTimePeriod('today')">Hôm nay</button>
+              <button mat-raised-button [color]="'primary'" (click)="setTimePeriod('this-month')">Tháng này</button>
+              <button mat-raised-button [color]="'primary'" (click)="setTimePeriod('this-year')">Năm nay</button>
+            </div>
               <div class="statistic-section">
                 <div class="statistic-item">
                   <label>Số đơn đăng ký:</label>

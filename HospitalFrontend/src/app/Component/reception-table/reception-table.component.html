@@ -16,8 +16,8 @@
       <div>
         <div class="col-8">
           <mat-form-field class="w-full">
-            <mat-label >Trạng thái</mat-label>
-            <mat-select [(ngModel)]= trangThai (selectionChange)="doSearh()">
+            <mat-label>Trạng thái</mat-label>
+            <mat-select [(ngModel)]=trangThai (selectionChange)="doSearh()">
               <mat-option *ngFor="let food of listTrangThai" [value]="food.value">
                 {{food.name}}
               </mat-option>
@@ -52,8 +52,8 @@
         <ng-container matColumnDef="symbol" ,color="accent" ,icon="delete">
           <th mat-header-cell *matHeaderCellDef style="text-align: center;width: 20%;">Trạng thái</th>
           <td mat-cell *matCellDef=" let element " style="text-align: center;">
-            {{element.trang_thai=='CHO_XAC_NHAN'?'Chờ xác nhận':element.trang_thai}} </td>
-          <!-- <td mat-cell *matCellDef=" let element "> {{viewTrangThai(element)}} </td> -->
+            {{viewTrangThai(element)}}
+          </td>
         </ng-container>
         <ng-container matColumnDef="thaoTac">
           <th mat-header-cell *matHeaderCellDef mat-sort-header
