@@ -55,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findByEmail(information.getEmail());
         if (customer == null) {
             Customer newCustomer = modelMapper.map(information, Customer.class);
-            newCustomer.setCreatedDate(LocalDateTime.now());
+            newCustomer.setCreatedDate(new Date(System.currentTimeMillis()));
             newCustomer.setActive(1);
             String encryptedPassword = encryption.encode(information.getPassword());
             newCustomer.setPassword(encryptedPassword);

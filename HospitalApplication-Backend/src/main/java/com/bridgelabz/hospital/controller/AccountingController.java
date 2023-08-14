@@ -19,10 +19,7 @@ import javax.persistence.EntityNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin
@@ -62,36 +59,79 @@ public class AccountingController {
         return orderAccDTOList;
     }
 
-    @GetMapping("accounting/order-stats")
-    public Map<String, Integer> getOrderStats(@RequestParam String timePeriod) {
-        LocalDateTime startDate;
-        LocalDateTime endDate = LocalDateTime.now();
+        @GetMapping("/accounting/order-stats")
+        public Map<String, Integer> getOrderStats(@RequestParam String timePeriod) {
+            Date startDate;
+            Date endDate;
 
-        switch (timePeriod) {
-            case "today":
-                startDate = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
-                break;
-            case "this-month":
-                startDate = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-                break;
-            case "this-year":
-                startDate = LocalDateTime.now().withDayOfYear(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid time period");
+            System.out.println("Received request with time period: " + timePeriod);
+
+            switch (timePeriod) {
+                case "today":
+                    startDate = new Date(removeTimePart(new Date(System.currentTimeMillis())).getTime());
+                    endDate = new Date(System.currentTimeMillis());
+                    break;
+                case "this-month":
+                    startDate = new Date(removeTimePart(getFirstDayOfMonth()).getTime());
+                    endDate = new Date(System.currentTimeMillis());
+                    break;
+                case "this-year":
+                    startDate = new Date(removeTimePart(getFirstDayOfYear()).getTime());
+                    endDate = new Date(System.currentTimeMillis());
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid time period");
+            }
+
+            System.out.println("Calculated start date: " + startDate);
+            System.out.println("Calculated end date: " + endDate);
+
+            int confirmedOrders = orderRepository.countConfirmedByTimePeriod(startDate, endDate);
+
+            int newCustomers = customerRepository.countByCreatedDate(startDate);
+
+            Map<String, Integer> stats = new HashMap<>();
+            stats.put("totalOrders", confirmedOrders);
+            stats.put("confirmedOrders", confirmedOrders);
+            stats.put("newCustomers", newCustomers);
+
+            System.out.println("Total Orders: " + confirmedOrders);
+            System.out.println("Confirmed Orders: " + confirmedOrders);
+            System.out.println("New Customers: " + newCustomers);
+
+            return stats;
         }
 
-        int confirmedOrders = orderRepository.countConfirmedByTimePeriod(startDate, endDate);
-
-        int newCustomers = customerRepository.countByCreatedDate(startDate);
-
-        Map<String, Integer> stats = new HashMap<>();
-        stats.put("totalOrders", confirmedOrders);
-        stats.put("confirmedOrders", confirmedOrders);
-        stats.put("newCustomers", newCustomers);
-
-        return stats;
+    private Date removeTimePart(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return new Date(calendar.getTimeInMillis()); // Chuyển đổi lại thành kiểu java.sql.Date
     }
 
+    // Lấy ngày đầu tiên của tháng
+    private Date getFirstDayOfMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return new Date(calendar.getTimeInMillis()); // Chuyển đổi lại thành kiểu java.sql.Date
+    }
 
+    // Lấy ngày đầu tiên của năm
+    private Date getFirstDayOfYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MONTH, Calendar.JANUARY);
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return new Date(calendar.getTimeInMillis()); // Chuyển đổi lại thành kiểu java.sql.Date
+    }
 }

@@ -1,6 +1,5 @@
 package com.bridgelabz.hospital.repository;
 
-import com.bridgelabz.hospital.entity.Customer;
 import com.bridgelabz.hospital.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +10,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
@@ -27,7 +25,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     int countByTimePeriod(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     @Query("SELECT COUNT(o) FROM Order o WHERE o.userConfirmedBy IS NOT NULL AND o.ngay_tao >= :startDate AND o.ngay_tiep_nhan <= :endDate")
-    int countConfirmedByTimePeriod(LocalDateTime startDate, LocalDateTime endDate);
+    int countConfirmedByTimePeriod(Date startDate, Date endDate);
 
     @Query("SELECT o FROM Order o WHERE  o.userConfirmedBy.role = :role")
     List<Order> findByUserConfirmedBy_Role(String role);

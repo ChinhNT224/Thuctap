@@ -8,13 +8,12 @@ import {Excel, ExcelService} from '../../Service/excel.service';
   styleUrls: ['./accounting.component.scss']
 })
 export class AccountingComponent implements OnInit {
-  totalRegistrations :number;
-  totalConfirmations:number ;
-  newRegistrationsnum:number=0;
+  totalConfirmations:number;
+  newRegistrationsnum:number;
+  totalItems: number;
   public opened2 = false;
   pageSize: number = 10;
   page: number = 0;
-  totalItems: number = 0;
   displayedColumns: string[] = [
     'stt',
     'khachhang',
@@ -24,7 +23,7 @@ export class AccountingComponent implements OnInit {
     'trangthai',
   ];
   registrations: any = [];
-
+  private timePeriodData: any;
   nameEventHander($event: any) {
     this.opened2 = $event;
   }
@@ -37,7 +36,8 @@ export class AccountingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.doSearh()
+    this.setTimePeriod('today');
+    this.doSearh();
   }
 
   onChangePage(event: any) {
@@ -47,8 +47,6 @@ export class AccountingComponent implements OnInit {
   }
 
   doExport(){
-
-
     const header: string[] = [
       "STT",
       "Khách hàng",
@@ -73,7 +71,7 @@ export class AccountingComponent implements OnInit {
     })
 
     let excel: Excel = {
-      title: "Thống kê hóa đơn",
+      title: "Thống kê đơn đăng ký",
       subTitle: null,
       workSheet: null,
       keys: keys,
@@ -81,7 +79,7 @@ export class AccountingComponent implements OnInit {
       data: this.registrations,
       groupHeaders: null,
       groupMerge: null,
-      sheetName: "Hóa đơn",
+      sheetName: "Đơn đăng ký",
       headers:header
     };
     let arrayExcel = [];
@@ -91,6 +89,20 @@ export class AccountingComponent implements OnInit {
     this._exporHelperService.generateExcel("Thống kê đăng kí" + timeSpan, arrayExcel);
   }
 
+  setTimePeriod(timePeriod: string) {
+    this.userService.getAccountingByTimePeriod(timePeriod).subscribe(
+      (res: any) => {
+        this.registrations = res;
+        this.totalItems = res.totalOrders; // Sử dụng giá trị từ trường 'totalOrders' của JSON
+        this.totalConfirmations = res.confirmedOrders; // Sử dụng giá trị từ trường 'confirmedOrders' của JSON
+        this.newRegistrationsnum = res.newCustomers; // Sử dụng giá trị từ trường 'newCustomers' của JSON
+        this.paginateData();
+      },
+      (error) => {
+        // Xử lý lỗi (nếu có)
+      }
+    );
+  }
   doSearh() {
     debugger
     this.userService.getAccounting().subscribe((res: any) => {
@@ -98,7 +110,7 @@ export class AccountingComponent implements OnInit {
       this.totalItems = res.length
       var tmp=0;
       for (let i=0 ;i< this.registrations.length;i++){
-        if(this.registrations[i].trangThai=='confirmed'){
+        if(this.registrations[i].trangThai=='Đã xác nhận'){
           tmp++;
         }
       }

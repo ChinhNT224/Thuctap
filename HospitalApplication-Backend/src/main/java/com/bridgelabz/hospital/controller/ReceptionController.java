@@ -78,9 +78,8 @@ public class ReceptionController {
         }
     }
 
-
     @PostMapping("/reception/orders/{orderId}/refused")
-    public ResponseEntity<Response> refusedOrder(@PathVariable int orderId, @RequestBody Users receptionUser) {
+    public ResponseEntity<Response> refusedOrder(@PathVariable int orderId, @RequestBody Map<String, Object> requestData) {
         try {
             // Fetch the order from the database based on orderId
             Order order = receptionService.getOrderById(orderId);
@@ -90,19 +89,30 @@ public class ReceptionController {
                         .body(new Response("Order not found", 404));
             }
 
-            if (!receptionUser.getRole().equalsIgnoreCase("reception")) {
+            // Check if the receptionUser has the role "reception"
+            String role = requestData.get("role").toString();
+            if (!role.equalsIgnoreCase("reception")) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                         .body(new Response("Unauthorized access", 401));
             }
 
+            // Set the trạng thái of the order to "confirmed"
             order.setTrang_thai("Từ chối");
 
-            LocalDate localDate = LocalDate.now();
-            Date currentDate = Date.valueOf(localDate);
-            order.setNgay_tiep_nhan(currentDate);
-
+            // Set the receptionUser as the user who confirmed the order
+            Users receptionUser = new Users();
+            receptionUser.setUserId(Integer.parseInt(requestData.get("userId").toString()));
+            receptionUser.setName(requestData.get("username").toString());
             order.setUserConfirmedBy(receptionUser);
 
+            // Set the ngay_tiep_nhan using the provided timestamp from front end
+            if (requestData.containsKey("ngay_tiep_nhan")) {
+                long timestamp = Long.parseLong(requestData.get("ngay_tiep_nhan").toString());
+                Date ngayTiepNhan = new Date(timestamp);
+                order.setNgay_tiep_nhan(ngayTiepNhan);
+            }
+
+            // Save the updated order to the database
             receptionService.updateOrder(order);
 
             return ResponseEntity.status(HttpStatus.OK)

@@ -1,5 +1,6 @@
 package com.bridgelabz.hospital.entity;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Customer {
     private String email;
     private String password;
     private Long mobileNumber;
-    private LocalDateTime createdDate;
+    private Date createdDate;
     private boolean isVerified;
     private Integer active;
     private Integer isdelete;
@@ -52,7 +53,7 @@ public class Customer {
                 + "]";
     }
 
-    public Customer(long customerId, String name, String email, String password, Long mobileNumber, LocalDateTime createdDate, boolean isVerified, Integer active, Integer isdelete) {
+    public Customer(long customerId, String name, String email, String password, Long mobileNumber, Date createdDate, boolean isVerified, Integer active, Integer isdelete) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
@@ -104,11 +105,11 @@ public class Customer {
         this.mobileNumber = mobileNumber;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public Date getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
 

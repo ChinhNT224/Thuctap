@@ -18,6 +18,10 @@ export class UserService {
     headers: new HttpHeaders({'content-type': 'application/json'})
   };
 
+  getAccountingByTimePeriod(timePeriod: string) {
+    const url = `${this.baseUrl}/accounting/order-stats?timePeriod=${timePeriod}`;
+    return this.http.get(url);
+  }
   public signUp(data: any) {
     return this.http.post(`${this.baseUrl}/registration`, data);
   }

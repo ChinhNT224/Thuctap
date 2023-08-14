@@ -91,7 +91,7 @@ export class AdminAccountingComponent implements OnInit {
     })
 
     let excel: Excel = {
-      title: "Thống kê hóa đơn",
+      title: "Thống kê đơn đăng ký",
       subTitle: null,
       workSheet: null,
       keys: keys,
@@ -99,7 +99,7 @@ export class AdminAccountingComponent implements OnInit {
       data: this.registrations,
       groupHeaders: null,
       groupMerge: null,
-      sheetName: "Hóa đơn",
+      sheetName: "Đơn đăng ký",
       headers:header
     };
     let arrayExcel = [];
