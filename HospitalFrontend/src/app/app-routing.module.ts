@@ -16,6 +16,7 @@ import {CusTomerComponent} from "./Component/cus-tomer/cus-tomer.component";
 import {ReceptionTableComponent} from "./Component/reception-table/reception-table.component";
 import {AccountingComponent} from "./Component/accounting/accounting.component";
 import {HomeComponent} from "./Component/home/home.component";
+import {AdminAccountingComponent} from "./Component/admin-accounting/admin-accounting.component";
 
 const routes: Routes = [
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path:'Customer',component:CusTomerComponent},
   {path:'ReceptionTable',component:ReceptionTableComponent},
   {path:'Accouting',component:AccountingComponent},
+  {path:'Admin-Accouting',component: AdminAccountingComponent},
   {path: '**', component: PagenotfoundComponent},
 ];
 

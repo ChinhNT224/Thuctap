@@ -58,6 +58,8 @@ import { AccountingComponent } from './Component/accounting/accounting.component
 import { OderDetailDialogComponent } from './Component/oder-detail-dialog/oder-detail-dialog.component';
 import { DilalogUserComponent } from './Component/dilalog-user/dilalog-user.component';
 import { HomeComponent } from './Component/home/home.component';
+import { AdminAccountingComponent } from './Component/admin-accounting/admin-accounting.component';
+
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { HomeComponent } from './Component/home/home.component';
     AccountingComponent,
     OderDetailDialogComponent,
     HomeComponent,
+    AdminAccountingComponent,
 
   ],
   imports: [

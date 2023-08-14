@@ -1,0 +1,15 @@
+.guest-button {
+  font-size: 20px; /* Chọn kích thước chữ tùy ý */
+  padding: 15px 30px; /* Chọn khoảng cách theo ý muốn */
+  border: 2px solid white;
+  background-color: #007BFF; /* Màu nền xanh dương */
+  color: white; /* Màu chữ trắng */
+  border-radius: 10px; /* Độ cong góc */
+  cursor: pointer; /* Biểu tượng con trỏ khi hover */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển đổi màu */
+}
+
+.guest-button:hover {
+  background-color: white; /* Màu nền trắng khi hover */
+  color: #007BFF; /* Màu chữ xanh dương khi hover */
+}

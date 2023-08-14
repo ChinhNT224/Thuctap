@@ -22,11 +22,7 @@ export class SidenavbarComponent implements OnInit {
   name: any;
   email:any;
   length: any;
-  wishlistLength: number;
   constructor(private router:Router,private route:ActivatedRoute,) { }
-
-
-
 
   ngOnInit() {
     this.name = localStorage.getItem('Name');
@@ -66,7 +62,7 @@ export class SidenavbarComponent implements OnInit {
     this.router.navigate(['user']);
   }
   Home(){
-    this.router.navigate(['admin']);
+    this.router.navigate(['Admin-Accouting']);
   }
 
   orderStatus() {

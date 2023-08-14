@@ -25,8 +25,6 @@ const ELEMENT_DATA: PeriodicElement[] = [];
 export class AdminUserComponent implements OnInit {
   opened = true;
   public opened2 = false;
-  isUser = false;
-  isSeller = false;
   isAdmin = false;
   pageSize:number=10;
   page: number = 0;
