@@ -87,15 +87,15 @@ public class AccountingController {
             System.out.println("Calculated end date: " + endDate);
 
             int confirmedOrders = orderRepository.countConfirmedByTimePeriod(startDate, endDate);
-
+            int totalOrders = orderRepository.countByTimePeriod(startDate, endDate);
             int newCustomers = customerRepository.countByCreatedDate(startDate);
 
             Map<String, Integer> stats = new HashMap<>();
-            stats.put("totalOrders", confirmedOrders);
+            stats.put("totalOrders", totalOrders);
             stats.put("confirmedOrders", confirmedOrders);
             stats.put("newCustomers", newCustomers);
 
-            System.out.println("Total Orders: " + confirmedOrders);
+            System.out.println("Total Orders: " + totalOrders);
             System.out.println("Confirmed Orders: " + confirmedOrders);
             System.out.println("New Customers: " + newCustomers);
 

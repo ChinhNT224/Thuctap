@@ -21,11 +21,12 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT o FROM Order o WHERE  o.userCreatedBy.customerId = :customerId")
     List<Order>findAllBycustomerId(long customerId );
 
-    @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tao >= :startDate AND o.ngay_tao <= :endDate")
-    int countByTimePeriod(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+    @Query("SELECT COUNT(o) FROM Order o WHERE o.ngay_tiep_nhan >= :startDate AND o.ngay_tiep_nhan <= :endDate")
+    int countByTimePeriod(Date startDate, Date endDate);
 
-    @Query("SELECT COUNT(o) FROM Order o WHERE o.userConfirmedBy IS NOT NULL AND o.ngay_tao >= :startDate AND o.ngay_tiep_nhan <= :endDate")
+    @Query("SELECT COUNT(o) FROM Order o WHERE o.userConfirmedBy IS NOT NULL AND o.ngay_tiep_nhan >= :startDate AND o.ngay_tiep_nhan <= :endDate AND o.trang_thai = 'Đã xác nhận'")
     int countConfirmedByTimePeriod(Date startDate, Date endDate);
+
 
     @Query("SELECT o FROM Order o WHERE  o.userConfirmedBy.role = :role")
     List<Order> findByUserConfirmedBy_Role(String role);
